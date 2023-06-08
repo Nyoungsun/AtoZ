@@ -1,0 +1,57 @@
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-weight: 400;
+    font-style: normal;
+    transform: rotate(0.03deg);
+    src: url(https://cdn.jsdelivr.net/gh/webfontworld/naver/NanumBarunGothic.woff2) format('woff2');
+    font-display: swap;
+}
+
+* {
+    font-family: 'NanumBarunGothic';
+    background-color: #03011B;
+}
+
+#logoDiv {
+    text-align: center;
+    margin-top: 250px;
+}
+
+#searchDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 700px;
+    height: 55px;
+    margin: 0 auto;
+    margin-top: 90px;
+    border-radius: 30px;
+    border: 1px solid #ffffff;
+}
+
+input {
+    margin-right: 25px;
+    width: 85%;
+    height: 70%;
+    font-size: 18pt;
+    font-weight: 600;
+    border-style: none;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+input:focus {
+    outline: none;
+}
+
+button {
+    border-style: none;
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 620px;
+    cursor: pointer;
+}
+
+button img {
+    width: 30px;
+}
