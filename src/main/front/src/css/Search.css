@@ -9,7 +9,7 @@
 
 * {
     font-family: 'NanumBarunGothic';
-    background-color: #03011B;
+    background-color: #494B42;
 }
 
 #logoDiv {
@@ -25,18 +25,18 @@
     height: 55px;
     margin: 0 auto;
     margin-top: 90px;
-    border-radius: 30px;
-    border: 1px solid #ffffff;
+    border-radius: 25px;
+    border: 1px solid #DAE2E6;
 }
 
 input {
-    margin-right: 25px;
+    margin-right: 20px;
     width: 85%;
     height: 70%;
     font-size: 18pt;
     font-weight: 600;
     border-style: none;
-    border-color: #ffffff;
+    border-color: #DAE2E6;
     color: #ffffff;
 }
 
@@ -48,7 +48,7 @@ button {
     border-style: none;
     position: absolute;
     margin-top: 5px;
-    margin-left: 620px;
+    margin-left: 630px;
     cursor: pointer;
 }
 
