@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../css/Result.css'
-import { useLocation } from 'react-router-dom';
+import { Await, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const Result = () => {
 
     const text = useLocation().state.text;
+
+    const params = { text: text };
+
+    useEffect(() => {
+        axios.post('/search', null, { params: params })
+            .then((res) => console.log(res))
+    },[])
 
     return (
         <div>
