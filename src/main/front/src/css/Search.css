@@ -9,7 +9,7 @@
 
 * {
     font-family: 'NanumBarunGothic';
-    background-color: #494B42;
+    background-color: #ffffff;
 }
 
 #logoDiv {
@@ -22,22 +22,22 @@
     align-items: center;
     justify-content: center;
     width: 700px;
-    height: 55px;
+    height: 50px;
     margin: 0 auto;
-    margin-top: 90px;
+    margin-top: 60px;
     border-radius: 25px;
-    border: 1px solid #DAE2E6;
+    border: 1px solid #eeeeee;
+    box-shadow: 5px 5px 5px gainsboro;
 }
 
 input {
     margin-right: 20px;
     width: 85%;
     height: 70%;
-    font-size: 18pt;
+    font-size: 15pt;
     font-weight: 600;
     border-style: none;
-    border-color: #DAE2E6;
-    color: #ffffff;
+    color: #000000;
 }
 
 input:focus {

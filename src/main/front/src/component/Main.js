@@ -4,7 +4,7 @@ import logo from '../logo.png';
 import searchBtn from '../searchBtn.png';
 import { useNavigate } from 'react-router-dom';
 
-const Search = () => {
+const Home = () => {
 
     const navigate = useNavigate();
 
@@ -15,11 +15,15 @@ const Search = () => {
     };
 
     const goResult = () => {
-        navigate('/result', {
-            state: {
-                text: text
-            }
-        });
+        if (text === '') {
+            alert('검색어를 입력해주세요')
+        } else {
+            navigate('/result', {
+                state: {
+                    text: text
+                }
+            });
+        }
     };
 
     const pressEnter = (e) => {
@@ -44,4 +48,4 @@ const Search = () => {
     );
 };
 
-export default Search;
+export default Home;

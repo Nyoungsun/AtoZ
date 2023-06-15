@@ -1,22 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/Result.css'
-import { Await, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const Result = () => {
 
     const text = useLocation().state.text;
 
-    const params = { text: text };
+    const [data, setData] = useState([]);
+
+    const params = {'text': text};
 
     useEffect(() => {
         axios.post('/search', null, { params: params })
-            .then((res) => console.log(res))
-    },[])
+            .then((res) => setData(res.data))
+    }, [])
+
 
     return (
         <div>
-            <p>{text}</p>
+            {
+                data.items && data.items.map((data) => (
+                    <p dangerouslySetInnerHTML={{ __html: data.title }} />
+                ))
+            }
         </div>
     );
 };
