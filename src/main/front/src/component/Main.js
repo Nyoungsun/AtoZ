@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import '../css/Search.css';
+import { useNavigate } from 'react-router-dom';
+import '../css/Main.css';
 import logo from '../logo.png';
 import searchBtn from '../searchBtn.png';
-import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert'
 
 const Home = () => {
@@ -19,7 +19,7 @@ const Home = () => {
         if (text === '') {
             swal({
                 icon:'warning',
-                title: '검색어를 입력해주세요.',
+                text: '검색어를 입력해주세요.',
                 closeOnClickOutside: false,
             });
         } else {
@@ -39,13 +39,13 @@ const Home = () => {
 
     return (
         <div>
-            <div id='logoDiv'>
+            <div id='MainlogoDiv'>
                 <img src={logo} alt='logo' />
             </div>
 
-            <div id='searchDiv'>
-                <input onChange={onText} onKeyDown={pressEnter}></input>
-                <button id='searchBtn' onClick={goResult}>
+            <div id='MainSearchDiv'>
+                <input id='MainInput' onChange={onText} onKeyDown={pressEnter}></input>
+                <button id='MainSearchBtn' onClick={goResult}>
                     <img src={searchBtn} alt='검색' />
                 </button>
             </div>

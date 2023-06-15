@@ -12,12 +12,12 @@
     background-color: #ffffff;
 }
 
-#logoDiv {
+#MainlogoDiv {
     text-align: center;
     margin-top: 250px;
 }
 
-#searchDiv {
+#MainSearchDiv {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,7 +30,7 @@
     box-shadow: 5px 5px 5px gainsboro;
 }
 
-input {
+#MainInput {
     margin-right: 20px;
     width: 85%;
     height: 70%;
@@ -40,11 +40,11 @@ input {
     color: #000000;
 }
 
-input:focus {
+#MainInput:focus {
     outline: none;
 }
 
-#searchBtn {
+#MainSearchBtn {
     border-style: none;
     position: absolute;
     margin-top: 5px;
@@ -52,6 +52,11 @@ input:focus {
     cursor: pointer;
 }
 
-#searchBtn img {
+#MainSearchBtn img {
     width: 30px;
+}
+
+.swal-text {
+    font-size: 20px;
+    font-weight: 600;
 }
