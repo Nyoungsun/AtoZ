@@ -44,7 +44,7 @@ input:focus {
     outline: none;
 }
 
-button {
+#searchBtn {
     border-style: none;
     position: absolute;
     margin-top: 5px;
@@ -52,6 +52,6 @@ button {
     cursor: pointer;
 }
 
-button img {
+#searchBtn img {
     width: 30px;
 }

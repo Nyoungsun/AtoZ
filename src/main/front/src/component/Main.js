@@ -3,6 +3,7 @@ import '../css/Search.css';
 import logo from '../logo.png';
 import searchBtn from '../searchBtn.png';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert'
 
 const Home = () => {
 
@@ -16,7 +17,12 @@ const Home = () => {
 
     const goResult = () => {
         if (text === '') {
-            alert('검색어를 입력해주세요')
+            swal({
+                title: 'oops..',
+                text: '검색어를 입력해주세요',
+                icon: 'warning',
+                closeOnClickOutside: false,
+            });
         } else {
             navigate('/result', {
                 state: {
@@ -40,7 +46,7 @@ const Home = () => {
 
             <div id='searchDiv'>
                 <input onChange={onText} onKeyDown={pressEnter}></input>
-                <button onClick={goResult}>
+                <button id='searchBtn' onClick={goResult}>
                     <img src={searchBtn} alt='검색' />
                 </button>
             </div>
