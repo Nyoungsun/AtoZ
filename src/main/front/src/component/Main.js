@@ -18,9 +18,8 @@ const Home = () => {
     const goResult = () => {
         if (text === '') {
             swal({
-                title: 'oops..',
-                text: '검색어를 입력해주세요',
-                icon: 'warning',
+                icon:'warning',
+                title: '검색어를 입력해주세요.',
                 closeOnClickOutside: false,
             });
         } else {
