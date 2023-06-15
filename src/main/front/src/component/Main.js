@@ -44,7 +44,7 @@ const Home = () => {
             </div>
 
             <div id='MainSearchDiv'>
-                <input id='MainInput' onChange={onText} onKeyDown={pressEnter}></input>
+                <input id='MainInput' onChange={onText} onKeyDown={pressEnter}/>
                 <button id='MainSearchBtn' onClick={goResult}>
                     <img src={searchBtn} alt='검색' />
                 </button>

@@ -12,23 +12,83 @@
     color: #000000;
 }
 
-#wrap {
-    border: 1px solid black;
-    display: block;
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin: 0;
-    padding: 0;
+#body {
+    background: #FAFBFC;
 }
 
-#wrap img {
-    width: 50%;
-    margin-left: 10px;
-    margin-top: 10px;
-    display: block;
+#wrap {
+    border-bottom: 1px #5CE1E6 solid;
+    display: flex;
+    align-items: center;
+}
+
+#logo {
+    width: 85px;
+    margin: 15px 30px 15px 100px;
+}
+
+#ResultSearchDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    border-left: 2px #eeeeee solid;
 }
 
 #ResultInput {
+    margin-left: 25px;
+    width: 100%;
+    height: 30px;
+    font-size: 19pt;
+    font-weight: 600;
+    border-style: none;
+    color: #000000;
+}
+
+#ResultInput:focus {
+    outline: none;
+}
+
+#ResultSearchBtn {
+    padding: 0;
     margin: 0;
-    border: 1px solid black;
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 840px;
+    cursor: pointer;
+    border-style: none;
+}
+
+#ResultSearchBtn img {
+    width: 30px;
+}
+
+#ContentWrap {
+    border: 1px solid #eeeeee;
+    width: 45%;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+.loading{
+    float: right;
+    color: gray;
+}
+
+.content {
+    border-bottom: 1px solid #eeeeee;
+    padding: 70px 50px;
+}
+
+.content a {
+    text-decoration: none;
+}
+
+.title {
+    color: #004AAD;
+    font-size: 20px;
+}
+
+.title b{
+    color: #004AAD;
 }
