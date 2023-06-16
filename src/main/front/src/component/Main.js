@@ -16,11 +16,12 @@ const Home = () => {
         setText(e.target.value);
     };
 
+
     const goResult = () => {
         axios.post('search', null, { params: params })
             .then((res) => navigate('/result', {
                 state: {
-                    text: (text.includes('맛집')) ? text : text + '맛집',
+                    text: text,
                     data: res.data
                 }
             }))
@@ -39,7 +40,7 @@ const Home = () => {
             </div>
 
             <div id='MainSearchDiv'>
-                <input id='MainInput' onChange={onText} onKeyDown={pressEnter} placeholder="'맛집'을 쓰지 않아도 검색돼요. " />
+                <input id='MainInput' onChange={onText} onKeyDown={pressEnter} placeholder="'맛집'을 쓰지 않아도 검색에 포함돼요. " />
                 <button id='MainSearchBtn' onClick={goResult}>
                     <img src={searchBtn} alt='검색' />
                 </button>
