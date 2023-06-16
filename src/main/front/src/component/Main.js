@@ -1,34 +1,29 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/Main.css';
 import logo from '../logo.png';
 import searchBtn from '../searchBtn.png';
-import swal from 'sweetalert'
 
 const Home = () => {
-
     const navigate = useNavigate();
 
     const [text, setText] = useState('');
+
+    const params = { 'text': text };
 
     const onText = (e) => {
         setText(e.target.value);
     };
 
     const goResult = () => {
-        if (text === '') {
-            swal({
-                icon:'warning',
-                text: '검색어를 입력해주세요.',
-                closeOnClickOutside: false,
-            });
-        } else {
-            navigate('/result', {
+        axios.post('search', null, { params: params })
+            .then((res) => navigate('/result', {
                 state: {
-                    text: text
+                    text: (text.includes('맛집')) ? text : text + '맛집',
+                    data: res.data
                 }
-            });
-        }
+            }))
     };
 
     const pressEnter = (e) => {
@@ -44,7 +39,7 @@ const Home = () => {
             </div>
 
             <div id='MainSearchDiv'>
-                <input id='MainInput' onChange={onText} onKeyDown={pressEnter}/>
+                <input id='MainInput' onChange={onText} onKeyDown={pressEnter} placeholder="'맛집'을 쓰지 않아도 검색돼요. " />
                 <button id='MainSearchBtn' onClick={goResult}>
                     <img src={searchBtn} alt='검색' />
                 </button>

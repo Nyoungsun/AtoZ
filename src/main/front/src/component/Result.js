@@ -1,38 +1,48 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../css/Result.css'
-import { Link, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../logo.png';
 import searchBtn from '../searchBtn.png';
+import axios from 'axios';
 
 const Result = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    const [text, setText] = useState(useLocation().state.text);
+    const [text, setText] = useState(location.state.text);
 
-    const [data, setData] = useState([]);
+    const data = location.state.data;
 
     const params = { 'text': text };
 
-    const onText = (e) => {
-        setText(e.target.value)
-    }
+    const reResult = () => {
+        axios.post('search', null, { params: params })
+            .then((res) => navigate('/result', {
+                state: {
+                    text: (text.includes('맛집')) ? text : text + '맛집',
+                    data: res.data
+                }
+            }))
+    };
 
-    useEffect(() => {
-        axios.post('/search', null, { params: params })
-            .then((res) => setData(res.data))
-    }, [])
-
+    const pressEnter = (e) => {
+        if (e.key === 'Enter') {
+            reResult();
+        }
+    };
+    
     return (
         <div id='body'>
             <div id='wrap'>
-               <Link to='/'><img id='logo' src={logo} alt='logo'/></Link>
-                <div id='ResultSearchDiv'>
-                    <input id='ResultInput' value={text} onChange={onText} />
+                <div id='wrapContent'>
+                    <Link to='/'><img id='logo' src={logo} alt='logo' /></Link>
+                    <div id='ResultSearchDiv'>
+                        <input id='ResultInput' value={text} onKeyDown={pressEnter} onChange={(e) => setText(e.target.value)} placeholder="'맛집'을 쓰지 않아도 검색돼요."/>
+                    </div>
+                    <button id='ResultSearchBtn' onClick={reResult} >
+                        <img src={searchBtn} alt='검색'/>
+                    </button>
                 </div>
-
-                <button id='ResultSearchBtn'>
-                    <img src={searchBtn} alt='검색' />
-                </button>
             </div>
 
             <div id='ContentWrap'>
@@ -40,7 +50,7 @@ const Result = () => {
                     data.items && data.items.map((data) => (
                         <div className='content'>
                             <span className='loading'>필터링 중...</span>
-                            <a href='#'><div className='title' dangerouslySetInnerHTML={{ __html: data.title }} /></a>
+                            <Link to={data.link}><div className='title' dangerouslySetInnerHTML={{ __html: data.title }} /></Link>
                             <br />
                             <hr />
                             <br />
