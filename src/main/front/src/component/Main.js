@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/Main.css';
-import logo from '../logo.png';
-import searchBtn from '../searchBtn.png';
+import logo from '../img/logo.png';
+import searchBtn from '../img/searchBtn.png';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -40,7 +40,7 @@ const Home = () => {
             </div>
 
             <div id='MainSearchDiv'>
-                <input id='MainInput' onChange={onText} onKeyDown={pressEnter} placeholder="'맛집'을 쓰지 않아도 검색에 포함돼요. " />
+                <input id='MainInput' onChange={onText} onKeyDown={pressEnter} placeholder="검색어를 입력해보세요." />
                 <button id='MainSearchBtn' onClick={goResult}>
                     <img src={searchBtn} alt='검색' />
                 </button>

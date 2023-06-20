@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import logo from '../img/logo.png';
+import searchBtn from '../img/searchBtn.png';
 import '../css/Result.css'
-import { Link, useLocation, useNavigate} from 'react-router-dom';
-import logo from '../logo.png';
-import searchBtn from '../searchBtn.png';
 import axios from 'axios';
 
 const Result = () => {
@@ -12,6 +12,8 @@ const Result = () => {
     const [text, setText] = useState(location.state.text);
 
     const data = location.state.data;
+
+    console.log(data)
 
     const params = { 'text': text };
 
@@ -37,7 +39,7 @@ const Result = () => {
                 <div id='wrapContent'>
                     <Link to='/'><img id='logo' src={logo} alt='logo' /></Link>
                     <div id='ResultSearchDiv'>
-                        <input id='ResultInput' value={text} onKeyDown={pressEnter} onChange={(e) => setText(e.target.value)} placeholder="'맛집'을 쓰지 않아도 검색에 포함돼요." />
+                        <input id='ResultInput' value={text} onKeyDown={pressEnter} onChange={(e) => setText(e.target.value)} placeholder="검색어를 입력해보세요." />
                     </div>
                     <button id='ResultSearchBtn' onClick={reResult} >
                         <img src={searchBtn} alt='검색' />
@@ -47,8 +49,8 @@ const Result = () => {
 
             <div id='ContentWrap'>
                 {
-                    data.items && data.items.map((data) => (
-                        <div className='content'>
+                    data.items && data.items.map((data, index) => (
+                        <div key={index} className='content'>
                             <span className='loading'>필터링 중...</span>
                             <Link to={data.link}><div className='title' dangerouslySetInnerHTML={{ __html: data.title }} /></Link>
                             <br />
