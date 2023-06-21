@@ -96,7 +96,7 @@ public class NaverBlogServiceImpl implements NaverBlogService {
         }
     }
 
-    public String crawlingNaverBlog(String responseBody) {
+    public void crawlingNaverBlog(String responseBody) {
         //responseBody에서 link만 추출하여 저장
         JSONParser parser = new JSONParser();
         JSONObject object;
@@ -106,116 +106,64 @@ public class NaverBlogServiceImpl implements NaverBlogService {
             throw new RuntimeException(e);
         }
 
-        JSONArray items = (JSONArray) object.get("items"); //items가 배열에 감싸져있으므로 JSONArray
+        JSONArray items = (JSONArray) object.get("items");
         List<String> contentsList = new ArrayList<>();
-        Document document;
+
+        ExecutorService executorService = Executors.newFixedThreadPool(10); // Adjust the number of threads as per your requirements
+        List<Future<String>> futures = new ArrayList<>();
+
 
         for (int i = 0; i < items.size(); i++) {
             JSONObject element = (JSONObject) items.get(i);
-            String url = (String) element.get("link"); //items에서 link를 하나씩 추출
+            String url = (String) element.get("link");
 
-            try {
-                document = Jsoup.connect(url).get();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            Future<String> future = executorService.submit(() -> {
+                try {
+                    Document document = Jsoup.connect(url)
+                            .userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
+                            .get();
+                    Elements iframes = document.select("iframe#mainFrame");
+                    String src = iframes.attr("src");
+                    String realUrl = "http://blog.naver.com" + src;
 
-            Elements iframes = document.select("iframe#mainFrame");
-            String src = iframes.attr("src"); // iframe 태그에 있는 진짜 블로그 주소 가져오기
-            String realUrl = "http://blog.naver.com" + src; //진짜 블로그 주소의 document 가져오기
+                    Thread.sleep(2000);
 
-            Document realDocument;
-            try {
-                realDocument = Jsoup.connect(realUrl).get();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+                    Document realDocument = Jsoup.connect(realUrl).get();
+                    Elements blogElement = realDocument.select("div.se-component.se-text.se-l-default");
+                    if (blogElement.isEmpty()) {
+                        blogElement = realDocument.select("div.post-view");
+                    }
+                    String contents = blogElement.text();
+                    contents = contents.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣0-9,. ]", "");
+                    contents = contents.replaceAll("\\s+", " ");
+                    if (contents.length() > 1000) {
+                        contents = contents.substring(0, 1000);
+                    }
+                    return contents;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
 
-            Elements blog_element = realDocument.select("div.se-component.se-text.se-l-default");
-            if (blog_element.isEmpty()) {
-                blog_element = realDocument.select("div.post-view");
-            }
-            String contents = blog_element.text();
-            contents = contents.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣0-9,. ]", ""); //쉼표(,), 마침표(.), 띄어쓰기, 영문자를 제외한 모든 특수 문자를 변경
-            contents = contents.replaceAll("\\s+", " "); //공백이 여러개있는 경우 한개로 변경
-            if (contents.length() > 1000) { //Naver CLOVA Sentiment의 최대 글자 수가 1000자이므로 1000자 이하로 자른다.
-                contents = contents.substring(0, 1000);
-            }
-            contentsList.add(contents);
-            System.out.println(contents);
+            futures.add(future);
         }
-        System.out.println("fin");
-        return CompletableFuture.completedFuture("title");
-    }
 
-//    public void crawlingNaverBlog(String responseBody) {
-//        //responseBody에서 link만 추출하여 저장
-//        JSONParser parser = new JSONParser();
-//        JSONObject object;
-//        try {
-//            object = (JSONObject) parser.parse(responseBody);
-//        } catch (ParseException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        JSONArray items = (JSONArray) object.get("items");
-//        List<String> contentsList = new ArrayList<>();
-//
-//        ExecutorService executorService = Executors.newFixedThreadPool(10); // Adjust the number of threads as per your requirements
-//        List<Future<String>> futures = new ArrayList<>();
-//
-//
-//        for (int i = 0; i < items.size(); i++) {
-//            JSONObject element = (JSONObject) items.get(i);
-//            String url = (String) element.get("link");
-//
-//            Future<String> future = executorService.submit(() -> {
-//                try {
-//                    Document document = Jsoup.connect(url)
-//                            .userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
-//                            .get();
-//                    Elements iframes = document.select("iframe#mainFrame");
-//                    String src = iframes.attr("src");
-//                    String realUrl = "http://blog.naver.com" + src;
-//
-//                    Thread.sleep(2000);
-//
-//                    Document realDocument = Jsoup.connect(realUrl).get();
-//                    Elements blogElement = realDocument.select("div.se-component.se-text.se-l-default");
-//                    if (blogElement.isEmpty()) {
-//                        blogElement = realDocument.select("div.post-view");
-//                    }
-//                    String contents = blogElement.text();
-//                    contents = contents.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣0-9,. ]", "");
-//                    contents = contents.replaceAll("\\s+", " ");
-//                    if (contents.length() > 1000) {
-//                        contents = contents.substring(0, 1000);
-//                    }
-//                    return contents;
-//                } catch (IOException e) {
-//                    throw new RuntimeException(e);
-//                }
-//            });
-//
-//            futures.add(future);
-//        }
-//
-//        executorService.shutdown();
-//
-//        try {
-//            executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
-//
-//            for (Future<String> future : futures) {
-//                String contents = future.get();
-//                contentsList.add(contents);
-//                System.out.println(contents);
-//            }
-//
-//            System.out.println("fin");
-//        } catch (InterruptedException | ExecutionException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+        executorService.shutdown();
+
+        try {
+            executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+
+            for (Future<String> future : futures) {
+                String contents = future.get();
+                contentsList.add(contents);
+                System.out.println(contents);
+            }
+
+            System.out.println("fin");
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 
