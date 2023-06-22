@@ -39,11 +39,11 @@ public class NaverBlogServiceImpl implements NaverBlogService {
     @Value("${X_NCP_APIGW_API_KEY}")
     private String X_NCP_APIGW_API_KEY;
 
+    public Object searchNaverBlog(String text, int start) {
+        System.out.println("검색어: " + text + ", start: " + start);
 
-    public JSONObject searchNaverBlog(String text) {
         RestTemplate restTemplate = new RestTemplate();
-
-        String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text + "&display=" + 100;
+        String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text + "&display=" + 10 + "&start=" + start +  "&sort=sim" ;
 
         HttpHeaders headers = new HttpHeaders(); //요청 헤더
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -51,20 +51,26 @@ public class NaverBlogServiceImpl implements NaverBlogService {
         headers.set("X-Naver-Client-Secret", X_Naver_Client_Secret);
 
         HttpEntity<Map<String, String>> request = new HttpEntity<>(headers);
-        ResponseEntity<String> response = restTemplate.exchange(apiURL, HttpMethod.GET, request, String.class);
-        
-        JSONParser parser = new JSONParser();
-        JSONObject object = null;
-        
-        if (response.getStatusCode().is2xxSuccessful()) {
-            String responseBody = response.getBody();
-            try {
-                object = (JSONObject) parser.parse(responseBody); //JSONObject로 변환
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return object;
+        ResponseEntity<String> responseBody = restTemplate.exchange(apiURL, HttpMethod.GET, request, String.class);
+
+//        JSONObject responseJSON = null;
+//        if (responseBody.getStatusCode().is2xxSuccessful()) {
+//            String responseStr = responseBody.getBody();
+//            JSONParser parser = new JSONParser();
+//            try {
+//                responseJSON = (JSONObject) parser.parse(responseStr); //JSONObject로 변환
+//                Long total = (Long) responseJSON.get("total");
+//                System.out.println("총글수: " + total);
+//                if(start > total) {
+//                    responseJSON.put("items", false);
+//                }
+//            } catch (ParseException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//        System.out.println(responseJSON);
+
+        return responseBody;
     }
 
     public List<String> crawlingNaverBlog(String responseBody) {

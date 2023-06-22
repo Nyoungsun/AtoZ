@@ -20,12 +20,12 @@ public class NaverBlogController {
     private NaverBlogServiceImpl naverBlogServiceimpl;
 
     @PostMapping("/search")
-    public JSONObject searchNaverBlog(@RequestParam String text) {
-        JSONObject responseBody = naverBlogServiceimpl.searchNaverBlog(text);
+    public Object searchNaverBlog(@RequestParam String text, int start) {
+        Object responseBody = naverBlogServiceimpl.searchNaverBlog(text, start);
 //        List<String> contentsList = naverBlogServiceimpl.crawlingNaverBlog(responseBody);
 //        naverBlogServiceimpl.clovaSentiment(contentsList);
 
-        System.out.println("클라이언트에 responseBody 전송");
+        System.out.println("responseBody 전송");
 
         return responseBody;
     }

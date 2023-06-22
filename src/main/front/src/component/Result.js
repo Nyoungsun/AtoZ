@@ -1,68 +1,77 @@
-import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect} from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer';
 import logo from '../img/logo.png';
 import searchBtn from '../img/searchBtn.png';
-import '../css/Result.css'
+import '../css/Result.css';
 import axios from 'axios';
+import Items from './Items';
 
 const Result = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
+  const location = useLocation();
+  const [text, setText] = useState(location.state.text);
+  const [items, setItems] = useState(location.state.items);
+  const [start, setStart] = useState(11); //result 페이지로 넘어와 스크롤 내리면 
 
-    const [text, setText] = useState(location.state.text);
+  const params = {
+    text: text,
+    start: start
+  };
 
-    const data = location.state.data;
+  const getItems = () => {
+    axios.post('search', null, { params: params })
+    .then((res) => {
+        setItems([...items, ...(res.data.items)])
+        setStart((start) => start + 10);
+    })
+    .catch((err) => {console.log(err)})
+  };
 
-    console.log(data)
+  const pressEnter = e => {
+    if (e.key === 'Enter') {
+      getItems();
+    }
+  };
 
-    const params = { 'text': text };
+  const [ref, inView] = useInView();
 
-    const reResult = () => {
-        axios.post('search', null, { params: params })
-            .then((res) => navigate('/result', {
-                state: {
-                    text: text,
-                    data: res.data
-                }
-            }))
-    };
+  useEffect(() => {
+    console.log(start)
+    if (start < 1001 & inView) {
+      getItems();
+    } 
+  }, [inView]);
 
-    const pressEnter = (e) => {
-        if (e.key === 'Enter') {
-            reResult();
-        }
-    };
-
-    return (
-        <div id='body'>
-            <div id='wrap'>
-                <div id='wrapContent'>
-                    <Link to='/'><img id='logo' src={logo} alt='logo' /></Link>
-                    <div id='ResultSearchDiv'>
-                        <input id='ResultInput' value={text} onKeyDown={pressEnter} onChange={(e) => setText(e.target.value)} placeholder="검색어를 입력해보세요." />
-                    </div>
-                    <button id='ResultSearchBtn' onClick={reResult} >
-                        <img src={searchBtn} alt='검색' />
-                    </button>
-                </div>
-            </div>
-
-            <div id='ContentWrap'>
-                {
-                    data.items && data.items.map((data, index) => (
-                        <div key={index} className='content'>
-                            <span className='loading'>필터링 중...</span>
-                            <Link to={data.link}><div className='title' dangerouslySetInnerHTML={{ __html: data.title }} /></Link>
-                            <br />
-                            <hr />
-                            <br />
-                            <div className='description' dangerouslySetInnerHTML={{ __html: data.description }} />
-                        </div>
-                    ))
-                }
-            </div>
+  return (
+    <div id='body'>
+      <div id='wrap'>
+        <div id='wrapContent'>
+          <Link to='/'>
+            <img id='logo' src={logo} alt='logo' />
+          </Link>
+          <div id='ResultSearchDiv'>
+            <input
+              id='ResultInput'
+              value={text}
+              onKeyDown={pressEnter}
+              onChange={e => setText(e.target.value)}
+              placeholder='검색어를 입력해보세요.'
+            />
+          </div>
+          <button id='ResultSearchBtn' onClick={getItems}>
+            <img src={searchBtn} alt='검색' />
+          </button>
         </div>
-    );
+      </div>
+
+      <div id='ContentWrap'>
+        {items.map((items, index) => (
+          <Items items={items} key={index} />
+        ))}
+        <div ref={ref}></div>
+      </div>
+    </div>
+  );
 };
 
 export default Result;
