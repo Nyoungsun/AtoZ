@@ -9,6 +9,7 @@ import Items from './Items';
 
 const Result = () => {
   const location = useLocation();
+  const total = useState(location.state.total);
   const [text, setText] = useState(location.state.text);
   const [items, setItems] = useState(location.state.items);
   const [start, setStart] = useState(11); //result 페이지로 넘어와 스크롤 내리면 
@@ -36,7 +37,6 @@ const Result = () => {
   const [ref, inView] = useInView();
 
   useEffect(() => {
-    console.log(start)
     if (start < 1001 & inView) {
       getItems();
     } 

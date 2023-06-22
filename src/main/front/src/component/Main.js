@@ -22,7 +22,8 @@ const Main = () => {
     const getItems = async() => {
         const response = await axios.post('search', null, {params: params});
         const items = response.data.items;
-        navigate('/result', {state: {text:text, items: items}});
+        const total = response.data.total;
+        navigate('/result', {state: {text:text, items: items, total: total}});
     }
 
     const pressEnter = (e) => {
