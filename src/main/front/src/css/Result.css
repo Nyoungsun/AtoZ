@@ -20,11 +20,11 @@
     top: 0;
     position: sticky;
     border-bottom: 1px #32594A solid;
-    margin-bottom: 50px;
-    box-shadow: 5px 5px 5px #eeeeee;
+    margin-bottom: 100px;
+    box-shadow: 5px 5px 5px gainsboro;
 }
 
-#wrapContent {
+#content {
     align-items: center;
     display: flex;
     justify-content: center;
@@ -32,7 +32,7 @@
 
 #logo {
     width: 75px;
-    margin: 15px 30px 10px 0px;
+    margin: 22px 30px 20px 0px;
 }
 
 #ResultSearchDiv {
@@ -88,12 +88,19 @@
     color: gray;
 }
 
-.content {
-    border-bottom: 1px solid #eeeeee;
+.items {
+    border: 1px solid #eeeeee;
+
+    box-shadow: 5px 5px 5px gainsboro;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-bottom: 50px;
     padding: 70px 50px;
+    width: 40%;
+    max-width: 800px;
 }
 
-.content a {
+.items a {
     text-decoration: none;
 }
 

@@ -46,7 +46,7 @@ const Result = () => {
   return (
     <div id='body'>
       <div id='wrap'>
-        <div id='wrapContent'>
+        <div id='content'>
           <Link to='/'>
             <img id='logo' src={logo} alt='logo' />
           </Link>
@@ -65,12 +65,10 @@ const Result = () => {
         </div>
       </div>
 
-      <div id='ContentWrap'>
         {items.map((items, index) => (
           <Items items={items} key={index} />
         ))}
         <div ref={ref}></div>
-      </div>
     </div>
   );
 };
