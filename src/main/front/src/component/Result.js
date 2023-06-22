@@ -37,7 +37,8 @@ const Result = () => {
   const [ref, inView] = useInView();
 
   useEffect(() => {
-    if (start < 1001 & inView) {
+    console.log(total[0])
+    if (start < 1001 & start < total[0] & inView) {
       getItems();
     } 
   }, [inView]);
