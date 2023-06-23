@@ -39,11 +39,11 @@ public class NaverBlogServiceImpl implements NaverBlogService {
     @Value("${X_NCP_APIGW_API_KEY}")
     private String X_NCP_APIGW_API_KEY;
 
-    public Object searchNaverBlog(String text, int start) {
-        System.out.println("검색어: " + text + ", start: " + start);
+    public ResponseEntity<String> searchNaverBlog(String query, int start) {
+        System.out.println("검색어: " + query + ", start: " + start);
 
         RestTemplate restTemplate = new RestTemplate();
-        String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text + "&display=" + 10 + "&start=" + start +  "&sort=sim" ;
+        String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + query + "&display=" + 10 + "&start=" + start +  "&sort=sim" ;
 
         HttpHeaders headers = new HttpHeaders(); //요청 헤더
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -52,6 +52,8 @@ public class NaverBlogServiceImpl implements NaverBlogService {
 
         HttpEntity<Map<String, String>> request = new HttpEntity<>(headers);
         ResponseEntity<String> responseBody = restTemplate.exchange(apiURL, HttpMethod.GET, request, String.class);
+
+//        if (responseBody.getStatusCode().is2xxSuccessful()) {
 
 //        JSONObject responseJSON = null;
 //        if (responseBody.getStatusCode().is2xxSuccessful()) {
@@ -68,16 +70,17 @@ public class NaverBlogServiceImpl implements NaverBlogService {
 //                throw new RuntimeException(e);
 //            }
 //        }
-//        System.out.println(responseJSON);
+//
 
         return responseBody;
     }
 
-    public List<String> crawlingNaverBlog(String responseBody) {
+    public List<String> crawlingNaverBlog(ResponseEntity<String> responseBody) {
+        JSONObject object = null;
+        String responsStr = responseBody.getBody();
         JSONParser parser = new JSONParser();
-        JSONObject object;
         try {
-            object = (JSONObject) parser.parse(responseBody); //JSONObject로 변환
+            object = (JSONObject) parser.parse(responsStr); //JSONObject로 변환
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -99,7 +102,7 @@ public class NaverBlogServiceImpl implements NaverBlogService {
                     String src = iframes.attr("src");
                     String realUrl = "http://blog.naver.com" + src;
 
-                    Thread.sleep(2000); //네이버 API 접속 차단을 위한 지연 시간
+//                    Thread.sleep(2000); //네이버 API 접속 차단을 위한 지연 시간
 
                     Document realDocument = Jsoup.connect(realUrl).get();
                     Elements blogContent = realDocument.select("div.se-component.se-text.se-l-default");
@@ -112,6 +115,7 @@ public class NaverBlogServiceImpl implements NaverBlogService {
 
                     content = content.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣0-9,. ]", "");
                     content = content.replaceAll("\\s+", " ");
+                    content = content.trim();
 
                     if (content.length() > 1000) {
                         content = content.substring(0, 1000);
@@ -136,12 +140,11 @@ public class NaverBlogServiceImpl implements NaverBlogService {
                 String contents = future.get();
                 contentsList.add(contents);
             }
-
-            System.out.println("네이버 블로그 본문 크롤링 완료");
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
 
+        System.out.println("네이버 블로그 본문 크롤링 완료");
         return contentsList;
     }
 

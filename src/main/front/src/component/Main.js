@@ -6,24 +6,15 @@ import logo from '../img/logo.png';
 import searchBtn from '../img/searchBtn.png';
 
 const Main = () => {
-    const [text, setText] = useState('');
-
-    const onText = (e) => {
-        setText(e.target.value);
-    };
-
-    const params = { 
-        'text': text,
-        'start': 1 //첫 검색은 1번글부터 10번글까지 (10개씩)
-    };
+    const [query, setQuery] = useState('');
 
     const navigate = useNavigate();
 
     const getItems = async() => {
-        const response = await axios.post('search', null, {params: params});
-        const items = response.data.items;
-        const total = response.data.total;
-        navigate('/result', {state: {text:text, items: items, total: total}});
+        const result = await axios.get(`/search?query=${query}&start=1`);
+        const items = result.data.items;
+        const total = result.data.total;
+        navigate('/result', {state: {query:query, items: items, total: total}});
     }
 
     const pressEnter = (e) => {
@@ -39,7 +30,7 @@ const Main = () => {
             </div>
 
             <div id='MainSearchDiv'>
-                <input id='MainInput' onChange={onText} onKeyDown={pressEnter} placeholder="검색어를 입력해보세요." />
+                <input id='MainInput' onChange={(e) => setQuery(e.target.value)} onKeyDown={pressEnter} placeholder="검색어를 입력해보세요." />
                 <button id='MainSearchBtn' onClick={getItems}>
                     <img src={searchBtn} alt='검색' />
                 </button>

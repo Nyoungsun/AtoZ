@@ -5,14 +5,12 @@ import Main from './component/Main';
 
 const App = () => {
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Main />} />
-          <Route path='/result' element={<Result />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' exact element={<Main />} />
+        <Route path='/result' exact element={<Result />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
