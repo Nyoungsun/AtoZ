@@ -39,7 +39,7 @@ public class NaverBlogServiceImpl implements NaverBlogService {
     @Value("${X_NCP_APIGW_API_KEY}")
     private String X_NCP_APIGW_API_KEY;
 
-    public ResponseEntity<String> searchNaverBlog(String query, int start) {
+    public JSONObject searchNaverBlog(String query, int start) {
         System.out.println("검색어: " + query + ", start: " + start);
 
         RestTemplate restTemplate = new RestTemplate();
@@ -53,37 +53,23 @@ public class NaverBlogServiceImpl implements NaverBlogService {
         HttpEntity<Map<String, String>> request = new HttpEntity<>(headers);
         ResponseEntity<String> responseBody = restTemplate.exchange(apiURL, HttpMethod.GET, request, String.class);
 
-//        if (responseBody.getStatusCode().is2xxSuccessful()) {
+        JSONObject responseJSON = null;
+        if (responseBody.getStatusCode().is2xxSuccessful()) {
+            String responseStr = responseBody.getBody();
+            JSONParser parser = new JSONParser();
+            try {
+                 responseJSON = (JSONObject) parser.parse(responseStr); //JSONObject로 변환
 
-//        JSONObject responseJSON = null;
-//        if (responseBody.getStatusCode().is2xxSuccessful()) {
-//            String responseStr = responseBody.getBody();
-//            JSONParser parser = new JSONParser();
-//            try {
-//                responseJSON = (JSONObject) parser.parse(responseStr); //JSONObject로 변환
-//                Long total = (Long) responseJSON.get("total");
-//                System.out.println("총글수: " + total);
-//                if(start > total) {
-//                    responseJSON.put("items", false);
-//                }
-//            } catch (ParseException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-//
-        return responseBody;
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return responseJSON;
     }
 
-    public List<String> crawlingNaverBlog(ResponseEntity<String> responseBody) {
-        JSONObject object = null;
-        String responsStr = responseBody.getBody();
-        JSONParser parser = new JSONParser();
-        try {
-            object = (JSONObject) parser.parse(responsStr); //JSONObject로 변환
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        JSONArray items = (JSONArray) object.get("items"); //items 필드만 추출하여 JSONArray로 변환
+    public List<String> crawlingNaverBlog(JSONObject responseBody) {
+        JSONArray items = (JSONArray) responseBody.get("items"); //items 필드만 추출하여 JSONArray로 변환
 
         List<String> contentsList = new ArrayList<>(); //itmes의 link들을 저장할 배열 생성
 
@@ -140,8 +126,6 @@ public class NaverBlogServiceImpl implements NaverBlogService {
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
-
-        System.out.println("네이버 블로그 본문 크롤링 완료");
         return contentsList;
     }
 
@@ -170,8 +154,6 @@ public class NaverBlogServiceImpl implements NaverBlogService {
             Map<String, String> content = new HashMap<>(); //요청 바디
             content.put("content", text);
 
-//            System.out.println(content);
-
             HttpEntity<Map<String, String>> request = new HttpEntity<>(content, headers);
             ResponseEntity<String> response = restTemplate.exchange(apiURL, HttpMethod.POST, request, String.class);
 
@@ -183,19 +165,11 @@ public class NaverBlogServiceImpl implements NaverBlogService {
                     Map<String, Object> responseMap = objectMapper.readValue(responseBody, Map.class); //responsBody에서 document필드만 추출하기 위해 파싱
                     Map<String, Object> document = (Map<String, Object>) responseMap.get("document");  //document필드만 추출
                     String sentiment = (String) document.get("sentiment");                             //document필드의 sentiment값 추출 (감정분석 결과)
-                    System.out.println(sentiment);
 
                     Map<String, Object> confidence = (Map<String, Object>) document.get("confidence"); //document필드의 confidence필드 추출(neutral, positive, negative)
-                    System.out.println(confidence);
-                    Double neutral = (Double) confidence.get("neutral");
-                    Double positive = (Double) confidence.get("neutral");
-                    Double negative = (Double) confidence.get("negative");
-
-                    Double percent = Math.max(Math.max(neutral, positive), negative);
 
                     jsonObj.put("sentiment", sentiment);
-                    jsonObj.put("percent", percent);
-
+                    jsonObj.put("confidence", confidence);
                     jsonArray.add(jsonObj);
 
                 } catch (Exception e) {
@@ -203,6 +177,7 @@ public class NaverBlogServiceImpl implements NaverBlogService {
                 }
             }//if
         }//for
+
         return jsonArray;
     }
 }

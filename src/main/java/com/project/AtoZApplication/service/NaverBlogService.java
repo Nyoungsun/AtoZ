@@ -11,8 +11,8 @@ import java.util.concurrent.CompletableFuture;
 
 public interface NaverBlogService {
 
-    ResponseEntity<String> searchNaverBlog(String query, int start);
-    List<String> crawlingNaverBlog(ResponseEntity<String> responseBody);
+    JSONObject searchNaverBlog(String query, int start);
+    List<String> crawlingNaverBlog(JSONObject responseBody);
     JSONArray clovaSentiment(List<String> contentsList);
 
 }
