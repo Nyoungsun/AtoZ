@@ -26,7 +26,7 @@ const Main = () => {
     return (
         <div>
             <div id='MainlogoDiv'>
-                <img src={logo} alt='logo' />
+                <img id='logo' src={logo} alt='logo' />
             </div>
 
             <div id='MainSearchDiv'>

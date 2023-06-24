@@ -23,8 +23,8 @@ public class NaverBlogController {
     @GetMapping("/search")
     public ResponseEntity<String> searchNaverBlog(@RequestParam String query, int start) {
         ResponseEntity<String> responseBody = naverBlogServiceimpl.searchNaverBlog(query, start);
-//        List<String> contentsList = naverBlogServiceimpl.crawlingNaverBlog(responseBody);
-//        naverBlogServiceimpl.clovaSentiment(contentsList);
+        List<String> contentsList = naverBlogServiceimpl.crawlingNaverBlog(responseBody);
+        naverBlogServiceimpl.clovaSentiment(contentsList);
 
         return responseBody;
     }

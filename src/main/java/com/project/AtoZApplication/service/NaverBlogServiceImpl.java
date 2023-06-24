@@ -71,7 +71,6 @@ public class NaverBlogServiceImpl implements NaverBlogService {
 //            }
 //        }
 //
-
         return responseBody;
     }
 
@@ -101,8 +100,6 @@ public class NaverBlogServiceImpl implements NaverBlogService {
                     Elements iframes = document.select("iframe#mainFrame");
                     String src = iframes.attr("src");
                     String realUrl = "http://blog.naver.com" + src;
-
-//                    Thread.sleep(2000); //네이버 API 접속 차단을 위한 지연 시간
 
                     Document realDocument = Jsoup.connect(realUrl).get();
                     Elements blogContent = realDocument.select("div.se-component.se-text.se-l-default");
@@ -150,7 +147,6 @@ public class NaverBlogServiceImpl implements NaverBlogService {
 
     @Override
     public JSONArray clovaSentiment(List<String> contetnsList) {
-
         JSONArray jsonArray = new JSONArray();
         JSONObject jsonObj = new JSONObject();
 
@@ -174,7 +170,7 @@ public class NaverBlogServiceImpl implements NaverBlogService {
             Map<String, String> content = new HashMap<>(); //요청 바디
             content.put("content", text);
 
-            System.out.println(content);
+//            System.out.println(content);
 
             HttpEntity<Map<String, String>> request = new HttpEntity<>(content, headers);
             ResponseEntity<String> response = restTemplate.exchange(apiURL, HttpMethod.POST, request, String.class);
@@ -187,8 +183,10 @@ public class NaverBlogServiceImpl implements NaverBlogService {
                     Map<String, Object> responseMap = objectMapper.readValue(responseBody, Map.class); //responsBody에서 document필드만 추출하기 위해 파싱
                     Map<String, Object> document = (Map<String, Object>) responseMap.get("document");  //document필드만 추출
                     String sentiment = (String) document.get("sentiment");                             //document필드의 sentiment값 추출 (감정분석 결과)
+                    System.out.println(sentiment);
 
                     Map<String, Object> confidence = (Map<String, Object>) document.get("confidence"); //document필드의 confidence필드 추출(neutral, positive, negative)
+                    System.out.println(confidence);
                     Double neutral = (Double) confidence.get("neutral");
                     Double positive = (Double) confidence.get("neutral");
                     Double negative = (Double) confidence.get("negative");
