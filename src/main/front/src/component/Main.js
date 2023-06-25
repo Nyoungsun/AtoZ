@@ -5,24 +5,35 @@ import style from '../css/main.module.css'
 import logo from '../img/logo.png';
 import searchBtn from '../img/searchBtn.png';
 import loading from '../img/loading.png';
+import Swal from "sweetalert2";
 
 const Main = () => {
     const [query, setQuery] = useState('');
 
-    const [isloading, setIsLoading] = useState(null);
+    const [isLoading, setIsLoading] = useState(null);
 
     const navigate = useNavigate();
 
     const getItems = async () => {
-        setIsLoading(true);
+        if (query === '') {
+            Swal.fire({
+                icon: 'warning',
+                title: '검색어를 입력해주세요.',
+                showCancelButton: false,
+                confirmButtonText: "확인", 
+                confirmButtonColor: '#1564A8',
+            })
+        } else {
+            setIsLoading(true);
 
-        const result = await axios.get(`/search?query=${query}&start=1`);
-        const items = result.data.items;
-        const total = result.data.total;
+            const result = await axios.get(`/search?query=${query}&start=1`);
+            const items = result.data.items;
+            const total = result.data.total;
 
-        setIsLoading(false);
+            setIsLoading(false);
 
-        navigate('/result', { state: { query: query, items: items, total: total } });
+            navigate('/result', { state: { query: query, items: items, total: total } });
+        }
     }
 
     const pressEnter = (e) => {
@@ -36,7 +47,7 @@ const Main = () => {
         <div className={style.body}>
             <div className={style.logoDiv}>
                 {
-                    isloading ?
+                    isLoading ?
                         <div className={style.loadingDiv}>
                             <img src={loading} alt='loading' className={style.loading} />
                         </div> :

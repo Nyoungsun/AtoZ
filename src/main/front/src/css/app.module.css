@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-weight: 400;
+    font-style: normal;
+    transform: rotate(0.03deg);
+    src: url(https://cdn.jsdelivr.net/gh/webfontworld/naver/NanumBarunGothic.woff2) format('woff2');
+    font-display: swap;
+}
+
+*{
+    font-family: 'NanumBarunGothic';
+}
