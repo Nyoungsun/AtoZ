@@ -1,6 +1,6 @@
 FROM openjdk:17
 
-ARG JAR_FILE=build/libs/PipeGradleTest-0.0.1.jar
+ARG JAR_FILE=build/libs/AtoZApplication-0.0.1.jar
 
 COPY ${JAR_FILE} app.jar
 
