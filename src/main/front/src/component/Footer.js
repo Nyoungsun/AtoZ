@@ -5,7 +5,7 @@ import BI from '../img/BI.png'
 const Footer = () => {
     return (
         <div className={style.body}>
-            <img src={BI}></img>
+            <img src={BI} alt='BI'></img>
         </div>
     );
 };
