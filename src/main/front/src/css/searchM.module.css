@@ -4,6 +4,7 @@
     border-bottom: 2px #1564A8 solid;
     box-shadow: 5px 5px 5px gainsboro;
     background: #ffffff;
+    overflow-x: hidden;
 }
 
 .wrap {
