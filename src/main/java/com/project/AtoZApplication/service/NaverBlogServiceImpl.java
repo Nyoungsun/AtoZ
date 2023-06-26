@@ -41,7 +41,6 @@ public class NaverBlogServiceImpl implements NaverBlogService {
 
     public JSONObject searchNaverBlog(String query, int start) {
         System.out.println("검색어: " + query + ", start: " + start);
-
         RestTemplate restTemplate = new RestTemplate();
         String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + query + "&display=" + 10 + "&start=" + start +  "&sort=sim" ;
 

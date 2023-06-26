@@ -6,7 +6,6 @@ import './css/app.module.css'
 import Footer from './component/Footer';
 import { useMediaQuery } from 'react-responsive'
 
-
 const App = () => {
   const isTabletOrMobile = useMediaQuery({ maxWidth: 820 });
 
@@ -21,6 +20,7 @@ const App = () => {
       <Routes>
         <Route path='/' exact element={<Main isTabletOrMobile={isTabletOrMobile}/>} />
         <Route path='/result' exact element={<Result isTabletOrMobile={isTabletOrMobile}/>} />
+        {/* <Route path='/mySentiment' exact element={<MySentiment/>}/> */}
       </Routes>
       <Footer/>
     </BrowserRouter>

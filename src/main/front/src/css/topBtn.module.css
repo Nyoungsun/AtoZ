@@ -1,0 +1,31 @@
+.wrap {
+    position: fixed;
+    right: 10%;
+    bottom: 5%;
+    z-index: 1;
+}
+
+.wrapM {
+    position: fixed;
+    right: -10%;
+    bottom: 5%;
+    z-index: 1;
+}
+
+.topBtn {
+    border: none;
+    border-radius: 50px;
+    background: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color : transparent !important;
+}
+
+.btnImg {
+    border-radius: 50px;
+    width: 35%;
+}
+
+.btnImgM {
+    width: 25%;
+    
+}

@@ -6,14 +6,15 @@ import Items from './Items';
 import Search from './Search';
 import BeatLoader from "react-spinners/BeatLoader";
 import Swal from "sweetalert2";
+import TopBtn from './TopBtn';
 
 const Result = (props) => {
-
     const isTabletOrMobile = props.isTabletOrMobile;
 
     const location = useLocation();
 
     const navigate = useNavigate();
+
     const [ref, inView] = useInView();
 
     const [total, setTotal] = useState(location.state.total);
@@ -23,6 +24,29 @@ const Result = (props) => {
 
     const onQuery = (e) => {
         setQuery(e.target.value)
+    }
+
+    const [showButton, setShowButton] = useState(false);
+
+    useEffect(() => {
+        const onShowButton = () => {
+            if (window.scrollY > 500) {
+                setShowButton(true)
+            } else {
+                setShowButton(false)
+            }
+        }
+        window.addEventListener("scroll", onShowButton)
+        return () => {
+            window.removeEventListener("scroll", onShowButton)
+        }
+    }, [])
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
     }
 
     const getMoreItems = () => {
@@ -61,7 +85,7 @@ const Result = (props) => {
                     setItems(result.data.items);
                     setTotal(result.data.total);
                     navigate('/result', { state: { query: query, items: result.data.items, total: result.data.total } });
-                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+                    scrollToTop();
                 })
                 .catch((error) => {
                     console.log(error);
@@ -80,16 +104,22 @@ const Result = (props) => {
     return (
         <div style={{ background: `#FAFBFC`, minHeight: '100vh' }}>
             <Search getNewItems={getNewItems} pressEnter={pressEnter} query={query} onQuery={onQuery} isloading={isloading} isTabletOrMobile={isTabletOrMobile} />
-            {items.map((items, index) => (
-                <Items items={items} key={index} isTabletOrMobile={isTabletOrMobile} />
-            ))}
-            {start < 1001 && start < total ? (
-                <div ref={ref} style={{ textAlign: 'center', paddingTop: 10, paddingBottom: 25 }}>
-                    <BeatLoader color='#1564A8' margin={2}></BeatLoader>
-                </div>
-            ) : (
-                <div></div>
-            )}
+            {
+                items.map((items, index) => (
+                    <Items items={items} key={index} isTabletOrMobile={isTabletOrMobile} />
+                ))
+            }
+            {
+                showButton && <TopBtn scrollToTop={scrollToTop} isTabletOrMobile={isTabletOrMobile}/>
+            }
+            {
+                start < 1001 && start < total ?
+                    <div ref={ref} style={{ textAlign: 'center', paddingTop: 10, paddingBottom: 25 }}>
+                        <BeatLoader color='#1564A8' margin={2}></BeatLoader>
+                    </div>
+                    :
+                    <div></div>
+            }
         </div>
     );
 };
