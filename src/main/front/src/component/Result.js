@@ -25,12 +25,6 @@ const Result = (props) => {
         setQuery(e.target.value)
     }
 
-    useEffect(() => { 
-        window.onbeforeunload = function pushRefresh() {
-            window.scrollTo(0, 0);
-        };
-    }, []);
-
     const getMoreItems = () => {
         axios.get(`/search?query=${query}&start=${start}`)
             .then((result) => {
