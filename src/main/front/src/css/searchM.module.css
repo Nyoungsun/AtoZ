@@ -4,6 +4,8 @@
     border-bottom: 2px #1564A8 solid;
     box-shadow: 5px 5px 5px gainsboro;
     background: #ffffff;
+    margin: 0 auto;
+    width: 100%;
     overflow-x: hidden;
 }
 
@@ -44,7 +46,7 @@
 }
 
 .input {
-    max-width: 350px;
+    max-width: 300px;
     border: none;
     padding-left: 10px;
     padding-right: 5px;
