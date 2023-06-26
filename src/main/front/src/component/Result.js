@@ -7,7 +7,10 @@ import Search from './Search';
 import BeatLoader from "react-spinners/BeatLoader";
 import Swal from "sweetalert2";
 
-const Result = () => {
+const Result = (props) => {
+
+    const isTabletOrMobile = props.isTabletOrMobile;
+
     const location = useLocation();
 
     const navigate = useNavigate();
@@ -76,16 +79,16 @@ const Result = () => {
 
     return (
         <div style={{ background: `#FAFBFC`, minHeight: '100vh' }}>
-            <Search getNewItems={getNewItems} pressEnter={pressEnter} query={query} onQuery={onQuery} isloading={isloading} />
+            <Search getNewItems={getNewItems} pressEnter={pressEnter} query={query} onQuery={onQuery} isloading={isloading} isTabletOrMobile={isTabletOrMobile} />
             {items.map((items, index) => (
-                <Items items={items} key={index} />
+                <Items items={items} key={index} isTabletOrMobile={isTabletOrMobile} />
             ))}
             {start < 1001 && start < total ? (
-                <div ref={ref} style={{ textAlign: 'center', paddingBottom: 50 }}>
+                <div ref={ref} style={{ textAlign: 'center', paddingTop: 10, paddingBottom: 25 }}>
                     <BeatLoader color='#1564A8' margin={2}></BeatLoader>
                 </div>
             ) : (
-                <div style={{ border: `1px solid #F5F5F5` }} />
+                <div></div>
             )}
         </div>
     );
