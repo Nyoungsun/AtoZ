@@ -30,6 +30,7 @@ public class NaverBlogController {
         List<String> contentsList = naverBlogServiceimpl.crawlingNaverBlog(responseBody);
         JSONArray sentiment = naverBlogServiceimpl.clovaSentiment(contentsList);
 
+
         JSONArray items = (JSONArray) responseBody.get("items");
 
         for (int i = 0; i < items.size(); i++) {
