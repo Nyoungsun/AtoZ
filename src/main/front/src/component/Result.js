@@ -25,6 +25,12 @@ const Result = (props) => {
         setQuery(e.target.value)
     }
 
+    useEffect(() => { 
+        window.onbeforeunload = function pushRefresh() {
+            window.scrollTo(0, 0);
+        };
+    }, []);
+
     const getMoreItems = () => {
         axios.get(`/search?query=${query}&start=${start}`)
             .then((result) => {
@@ -48,7 +54,7 @@ const Result = (props) => {
         if (query === '') {
             Swal.fire({
                 icon: 'warning',
-                title: '검색어를 입력해주세요.',
+                text: '검색어를 입력해주세요.',
                 showCancelButton: false,
                 confirmButtonText: "확인",
                 confirmButtonColor: '#1564A8',
