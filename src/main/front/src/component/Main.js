@@ -22,7 +22,7 @@ const Main = (props) => {
         if (query === '' ) {
             Swal.fire({
                 icon: 'warning',
-                title: '검색어를 입력해주세요.',
+                text: '검색어를 입력해주세요.',
                 showCancelButton: false,
                 confirmButtonText: "확인",
                 confirmButtonColor: '#1564A8'
