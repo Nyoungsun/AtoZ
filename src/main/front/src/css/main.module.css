@@ -1,19 +1,19 @@
 .body {
-    min-height: 75vh;
+    min-height: calc(100vh - 16.5rem);
 }
 
 .logoDiv {
     text-align: center;
-    margin-top: 250px;
+    margin-top: 200px;
     margin-bottom: 50px;
 }
 
 .logoDiv img {
-    width: 230px;
+    width: 220px;
 }
 
 .loadingDiv {
-    height: 131px;
+    height: 115px;
     margin-top: 20px;
 }
 

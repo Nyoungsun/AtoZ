@@ -1,5 +1,5 @@
 .body {
-    min-height: 100vh;
+    min-height: calc(100vh - 11.5rem);
 }
 
 .logoDiv {
@@ -26,6 +26,7 @@
     0% {
         margin-top: 0px;
     }
+
     100% {
         margin-top: 15px;
     }

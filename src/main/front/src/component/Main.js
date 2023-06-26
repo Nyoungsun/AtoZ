@@ -26,6 +26,7 @@ const Main = (props) => {
                 showCancelButton: false,
                 confirmButtonText: "확인",
                 confirmButtonColor: '#1564A8'
+
             })
         } else {
             setIsLoading(true);
