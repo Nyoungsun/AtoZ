@@ -4,9 +4,6 @@
     border-bottom: 2px #1564A8 solid;
     box-shadow: 5px 5px 5px gainsboro;
     background: #ffffff;
-    margin: 0 auto;
-    width: 100%;
-    overflow-x: hidden;
 }
 
 .wrap {
@@ -39,18 +36,16 @@
 }
 
 .inputDiv {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 60%;
     border-left: 2px #eeeeee solid;
 }
 
 .input {
-    max-width: 300px;
+    width: 100%;
     border: none;
-    padding-left: 10px;
-    padding-right: 5px;
-    font-size: 15pt;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 17pt;
     font-weight: 600;
     color: #000000;
     outline: none;
