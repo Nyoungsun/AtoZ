@@ -1,6 +1,5 @@
 import React from 'react';
-import style from '../css/footer.module.css'
-import BI from '../img/BI.png'
+import style from '../css/Footer.module.css'
 
 const Footer = () => {
 
@@ -8,7 +7,7 @@ const Footer = () => {
         <div>
             {
                 <div className={style.body}>
-                    <img src={BI} alt='BI'></img>
+                    <img src='/img/BI.png' alt='BI'></img>
                 </div>
             }
         </div>

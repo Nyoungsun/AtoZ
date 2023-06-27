@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
-import axios from 'axios';
-import Items from './Items';
-import Search from './Search';
 import BeatLoader from "react-spinners/BeatLoader";
 import Swal from "sweetalert2";
+import axios from 'axios';
+import ItemsPc from './Itmes/ItemsPc';
+import ItemsMobile from './Itmes/ItemsMobile';
+import ItemsTablet from './Itmes/ItemsTablet';
+import SearchMobile from './Search/SearchMobile';
+import SearchTablet from './Search/SearchTablet';
+import SearchPc from './Search/SearchPc';
 import TopBtn from './TopBtn';
 
 const Result = (props) => {
-    const isTabletOrMobile = props.isTabletOrMobile;
+
+    const isPc = props.isPc;
+    const isMobile = props.isMobile;
+    const isTablet = props.isTablet;
 
     const location = useLocation();
 
@@ -22,11 +29,13 @@ const Result = (props) => {
     const [items, setItems] = useState(location.state.items);
     const [start, setStart] = useState(11);
 
+    const [isloading, setIsLoading] = useState(false);
+
+    const [showButton, setShowButton] = useState(false);
+
     const onQuery = (e) => {
         setQuery(e.target.value)
     }
-
-    const [showButton, setShowButton] = useState(false);
 
     useEffect(() => {
         const onShowButton = () => {
@@ -66,8 +75,6 @@ const Result = (props) => {
         }
     }, [inView]);
 
-    const [isloading, setIsLoading] = useState(false);
-
     const getNewItems = async () => {
         if (query === '') {
             Swal.fire({
@@ -102,15 +109,35 @@ const Result = (props) => {
     };
 
     return (
-        <div style={{ background: `#FAFBFC`, minHeight: '100vh' }}>
-            <Search getNewItems={getNewItems} pressEnter={pressEnter} query={query} onQuery={onQuery} isloading={isloading} isTabletOrMobile={isTabletOrMobile} />
-            {
-                items.map((items, index) => (
-                    <Items items={items} key={index} isTabletOrMobile={isTabletOrMobile} />
-                ))
+        <div style={{ background: `#FAFBFC`, minHeight: `calc(100vh - 4rem)` }}>
+            {isPc &&
+                <SearchPc getNewItems={getNewItems}
+                    pressEnter={pressEnter}
+                    query={query}
+                    onQuery={onQuery}
+                    isloading={isloading} />
             }
+            {isMobile &&
+                <SearchMobile getNewItems={getNewItems}
+                    pressEnter={pressEnter}
+                    query={query}
+                    onQuery={onQuery}
+                    isloading={isloading} />
+            }
+            {isTablet &&
+                <SearchTablet getNewItems={getNewItems}
+                    pressEnter={pressEnter}
+                    query={query}
+                    onQuery={onQuery}
+                    isloading={isloading} />
+            }
+
+            {isPc && items.map((items, index) => (<ItemsPc items={items} key={index} />))}
+            {isMobile && items.map((items, index) => (<ItemsMobile items={items} key={index} />))}
+            {isTablet && items.map((items, index) => (<ItemsTablet items={items} key={index} />))}
+
             {
-                showButton && <TopBtn scrollToTop={scrollToTop} isTabletOrMobile={isTabletOrMobile}/>
+                showButton && <TopBtn scrollToTop={scrollToTop} />
             }
             {
                 start < 1001 && start < total ?

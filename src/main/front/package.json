@@ -19,6 +19,7 @@
     "react-scripts": "5.0.1",
     "react-spinner": "^0.2.7",
     "react-spinners": "^0.13.8",
+    "sass": "^1.63.6",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.7.12",
     "web-vitals": "^2.1.4"
@@ -47,5 +48,9 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "http://localhost:8080",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "eslint": "^8.43.0"
+  }
 }

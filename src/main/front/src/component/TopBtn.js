@@ -1,6 +1,5 @@
 import React from 'react';
 import style from '../css/topBtn.module.css';
-import btnImg from '../img/topBtn.png';
 
 const TopBtn = (props) => {
 
@@ -11,7 +10,7 @@ const TopBtn = (props) => {
         <div>
             <div className={isTabletOrMobile ? `${style.wrapM}` : `${style.wrap}`}>
                 <button className={style.topBtn} onClick={scrollToTop} type="button">
-                    <img src={btnImg} className={isTabletOrMobile ? `${style.btnImgM}` : `${style.btnImg}`} alt='btnImg'/>
+                    <img src='img/topBtn.png' className={isTabletOrMobile ? `${style.btnImgM}` : `${style.btnImg}`} alt='btnImg'/>
                 </button>
             </div>
         </div>
