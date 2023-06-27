@@ -7,6 +7,7 @@ import loading from '../img/loading.png';
 import Swal from "sweetalert2";
 import style from '../css/main.module.css'
 import styleM from '../css/mainM.module.css'
+import { Link } from 'react-router-dom';
 
 const Main = (props) => {
 
@@ -19,7 +20,7 @@ const Main = (props) => {
     const navigate = useNavigate();
 
     const getItems = async () => {
-        if (query === '' ) {
+        if (query === '') {
             Swal.fire({
                 icon: 'warning',
                 text: '검색어를 입력해주세요.',
@@ -51,10 +52,7 @@ const Main = (props) => {
     return (
         <div>
             {
-                isTabletOrMobile
-
-                    ?
-
+                isTabletOrMobile ?
                     <div className={styleM.body}>
                         <div className={styleM.logoDiv}>
                             {
@@ -71,10 +69,9 @@ const Main = (props) => {
                                 <img src={searchBtn} alt='검색' />
                             </button>
                         </div>
+                        <Link to='/mySentiment'><div className={styleM.goSentiment}>내 글 감정분석 해보기</div></Link>
                     </div>
-
                     :
-
                     <div className={style.body}>
                         <div className={style.logoDiv}>
                             {
@@ -91,6 +88,7 @@ const Main = (props) => {
                                 <img src={searchBtn} alt='검색' />
                             </button>
                         </div>
+                        <Link to='/mySentiment'><div className={style.goSentiment}>내 글 감정분석 해보기</div></Link>
                     </div>
             }
         </div>

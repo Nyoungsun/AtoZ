@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../img/logo.png';
 import searchBtn from '../img/searchBtn.png';
-import style from '../css/search.module.css';
-import styleM from '../css/searchM.module.css';
+import styles from '../css/search.module.css';
+import stylesM from '../css/searchM.module.css';
 import loading from '../img/loading.png'
 
 const Search = (props) => {
@@ -17,42 +17,44 @@ const Search = (props) => {
     const isloading = props.isloading;
 
     return (
-        <>
+        <div>
             {
                 isTabletOrMobile ?
-                    <div className={styleM.body}>
-                        <div className={styleM.wrap}>
+                    <div className={stylesM.body}>
+                        <div className={stylesM.wrap}>
                             <Link to='/' onClick={() => (window.scrollTo({ top: 0 }))}>
-                                {isloading ? <img className={styleM.loading} src={loading} alt='logo' /> :
-                                    <img className={styleM.logo} src={logo} alt='logo' />
+                                {
+                                    isloading ? <img className={stylesM.loading} src={loading} alt='logo' /> :
+                                    <img className={stylesM.logo} src={logo} alt='logo' />
                                 }
                             </Link>
-                            <div className={styleM.inputDiv}>
-                                <input className={styleM.input} onKeyDown={pressEnter} value={query} onChange={onQuery} placeholder='검색어를 입력해보세요.' />
+                            <div className={stylesM.inputDiv}>
+                                <input className={stylesM.input} onKeyDown={pressEnter} value={query} onChange={onQuery} placeholder='검색어를 입력해보세요.' />
                             </div>
-                            <button className={styleM.btn} onClick={getNewItems}>
+                            <button className={stylesM.btn} onClick={getNewItems}>
                                 <img src={searchBtn} alt='검색' />
                             </button>
                         </div>
                     </div>
                     :
-                    <div className={style.body}>
-                        <div className={style.wrap}>
+                    <div className={styles.body}>
+                        <div className={styles.wrap}>
                             <Link to='/' onClick={() => (window.scrollTo({ top: 0 }))}>
-                                {isloading ? <img className={style.loading} src={loading} alt='logo' /> :
-                                    <img className={style.logo} src={logo} alt='logo' />
+                                {
+                                    isloading ? <img className={styles.loading} src={loading} alt='logo' /> :
+                                    <img className={styles.logo} src={logo} alt='logo' />
                                 }
                             </Link>
-                            <div className={style.inputDiv}>
-                                <input className={style.input} onKeyDown={pressEnter} value={query} onChange={onQuery} placeholder='검색어를 입력해보세요.' />
+                            <div className={styles.inputDiv}>
+                                <input className={styles.input} onKeyDown={pressEnter} value={query} onChange={onQuery} placeholder='검색어를 입력해보세요.' />
                             </div>
-                            <button className={style.btn} onClick={getNewItems}>
+                            <button className={styles.btn} onClick={getNewItems}>
                                 <img src={searchBtn} alt='검색' />
                             </button>
                         </div>
                     </div>
             }
-        </>
+        </div>
     );
 };
 

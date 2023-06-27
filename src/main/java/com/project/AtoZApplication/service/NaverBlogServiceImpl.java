@@ -42,7 +42,7 @@ public class NaverBlogServiceImpl implements NaverBlogService {
     public JSONObject searchNaverBlog(String query, int start) {
         System.out.println("검색어: " + query + ", start: " + start);
         RestTemplate restTemplate = new RestTemplate();
-        String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + query + "&display=" + 10 + "&start=" + start +  "&sort=sim" ;
+        String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + query + "&display=" + 10 + "&start=" + start + "&sort=sim";
 
         HttpHeaders headers = new HttpHeaders(); //요청 헤더
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -57,7 +57,7 @@ public class NaverBlogServiceImpl implements NaverBlogService {
             String responseStr = responseBody.getBody();
             JSONParser parser = new JSONParser();
             try {
-                 responseJSON = (JSONObject) parser.parse(responseStr); //JSONObject로 변환
+                responseJSON = (JSONObject) parser.parse(responseStr); //JSONObject로 변환
 
             } catch (ParseException e) {
                 throw new RuntimeException(e);
@@ -178,6 +178,26 @@ public class NaverBlogServiceImpl implements NaverBlogService {
         }//for
 
         return jsonArray;
+    }
+
+    @Override
+    public ResponseEntity<String> mySentiment(String text) {
+        String apiURL = "https://naveropenapi.apigw.ntruss.com/sentiment-analysis/v1/analyze";
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders(); //요청 헤더
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("X-NCP-APIGW-API-KEY-ID", X_NCP_APIGW_API_KEY_ID);
+        headers.set("X-NCP-APIGW-API-KEY", X_NCP_APIGW_API_KEY);
+
+        Map<String, String> content = new HashMap<>(); //요청 바디
+        content.put("content", text);
+
+        HttpEntity<Map<String, String>> request = new HttpEntity<>(content, headers);
+        ResponseEntity<String> response = restTemplate.exchange(apiURL, HttpMethod.POST, request, String.class);
+
+        return response;
     }
 }
 

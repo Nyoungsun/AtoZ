@@ -11,7 +11,7 @@ const TopBtn = (props) => {
         <div>
             <div className={isTabletOrMobile ? `${style.wrapM}` : `${style.wrap}`}>
                 <button className={style.topBtn} onClick={scrollToTop} type="button">
-                    <img src={btnImg} className={isTabletOrMobile ? `${style.btnImgM}` : `${style.btnImg}`}/>
+                    <img src={btnImg} className={isTabletOrMobile ? `${style.btnImgM}` : `${style.btnImg}`} alt='btnImg'/>
                 </button>
             </div>
         </div>
