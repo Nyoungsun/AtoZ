@@ -1,0 +1,49 @@
+.body{
+    min-height: calc(100vh - 4rem);
+}
+
+.logo{
+    display:inline-block;
+    margin-top: 50px;
+    margin-bottom: 70px;
+    text-align: center;
+}
+
+.logo img {
+    width: 130px;
+}
+
+.resultArea{
+    background: #ffffff;
+    font-size: 13pt;
+    padding: 50px;
+    border: 1px solid #eeeeee;
+    box-shadow: 2px 2px 2px 2px #eeeeee;
+    border-radius: 50px;
+    resize: none;
+    width: 90vh;
+    height: auto;
+    margin: 0 auto;
+}
+
+.btnWrap{
+    text-align: right;
+    margin: 0 auto;
+    width: 95vh;
+}
+
+.analyzeBtn{
+    border: none;
+    background: none;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.analyzeBtn img {
+    width: 80px;
+}
+
+.clovaLogo {
+    margin-top: 15px;
+    width: 150px;
+}
