@@ -6,13 +6,12 @@ const TopBtn = (props) => {
     const scrollToTop = props.scrollToTop;
     const isPc = props.isPc;
     const isMobile = props.isMobile;
-    const isTablet = props.isTablet;
 
     return (
         <div>
             <div className={isMobile ? `${style.wrapM}` : isPc ? `${style.wrapP}` : `${style.wrapT}`}>
                 <button className={style.topBtn} onClick={scrollToTop} type="button">
-                    <img src='img/top.png' className={isMobile ? `${style.btnImgM}` : `${style.btnImg}`} alt='btnImg'/>
+                    <img src='img/top.png' className={isMobile ? `${style.btnImgM}` : isPc ? `${style.btnImgP}` : `${style.btnImgT}`} alt='btnImg'/>
                 </button>
             </div>
         </div>

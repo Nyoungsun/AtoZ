@@ -1,6 +1,9 @@
-.btnImg {
+.topBtn {
+    border: none;
     border-radius: 50px;
-    width: 35%;
+    background: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent !important;
 }
 
 /* Pc */
@@ -11,12 +14,8 @@
     z-index: 1;
 }
 
-.topBtn {
-    border: none;
-    border-radius: 50px;
-    background: none;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent !important;
+.btnImgP {
+    width: 35%;
 }
 
 /* 모바일 */
@@ -40,15 +39,6 @@
     z-index: 1;
 }
 
-.topBtn {
-    border: none;
-    border-radius: 50px;
-    background: none;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent !important;
-}
-
-.btnImg {
-    border-radius: 50px;
+.btnImgT {
     width: 35%;
 }
