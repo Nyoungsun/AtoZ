@@ -17,6 +17,7 @@ public class MySentimentController {
     @GetMapping("/GetMySentiment")
     public ResponseEntity<String> mySentiment(@RequestParam String text) {
         ResponseEntity<String> response = naverBlogServiceImpl.mySentiment(text);
+
         return response;
     }
 }
