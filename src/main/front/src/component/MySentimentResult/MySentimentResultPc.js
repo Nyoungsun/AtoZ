@@ -25,9 +25,9 @@ const MySentiment = (props) => {
                             <span key={index}>{sentences.content}</span>
                         ))}" (이)에요.
                         <br />
-                        [부정: {Math.round(negative * 10) / 10}%]
-                        [중립: {Math.round(neutral * 10) / 10}%]
-                        [긍정: {Math.round(positive * 10) / 10}%]의 분석 결과로 해당 글은<b> {
+                        [부정: {Math.round(negative * 100) / 100}%]
+                        [중립: {Math.round(neutral * 100) / 100}%]
+                        [긍정: {Math.round(positive * 100) / 100}%]의 분석 결과로 해당 글은<b> {
                             sentiment === 'negative' ? '부정적' : sentiment === 'neutral' ? '중립적' : '긍정적'}</b>
                         인 글이에요.
                     </p>
