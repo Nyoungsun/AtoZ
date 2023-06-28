@@ -37,9 +37,9 @@ const MySentiment = (props) => {
                         {
                             sentences.map((sentences, index) => (
                                 <p key={index}><span><b>{sentences.content}</b></span><br />
-                                    [negative: {Math.round(sentences.confidence.negative * 10) / 10}%]
-                                    [neutral: {Math.round(sentences.confidence.neutral * 10) / 10}%]
-                                    [positive: {Math.round(sentences.confidence.positive * 10) / 10}%]
+                                    [부정: {Math.round(sentences.confidence.negative * 1000) / 1000}%]
+                                    [중립: {Math.round(sentences.confidence.neutral * 1000) / 1000}%]
+                                    [긍정: {Math.round(sentences.confidence.positive * 1000) / 1000}%]
                                 </p>
                             ))
                         }
