@@ -1,7 +1,6 @@
 package com.project.AtoZApplication.controller;
 
 import com.project.AtoZApplication.service.NaverBlogServiceImpl;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +15,6 @@ public class MySentimentController {
 
     @GetMapping("/GetMySentiment")
     public ResponseEntity<String> mySentiment(@RequestParam String text) {
-        ResponseEntity<String> response = naverBlogServiceImpl.mySentiment(text);
-
-        return response;
+        return naverBlogServiceImpl.mySentiment(text);
     }
 }
