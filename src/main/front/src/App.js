@@ -6,7 +6,7 @@ import Main from './component//Main/Main';
 import GetMySentiment from './component/GetMySentiment/GetMySentiment';
 import MySentimentResult from './component/MySentimentResult/MySentimentResult';
 import Footer from './component/Footer';
-import './css/App.module.css'
+import './App.css'
 
 const App = () => {
   const isPc = useMediaQuery({
