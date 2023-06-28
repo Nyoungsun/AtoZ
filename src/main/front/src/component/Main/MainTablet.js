@@ -33,7 +33,7 @@ const MainTablet = (props) => {
                         <img src='/img/search.png' alt='검색' />
                     </button>
                 </div>
-                <Link to='/GetMySentiment'><div className={style.goSentiment}>내 글 감정분석 해보기</div></Link>
+                <div style={{textAlign: 'center'}}><Link to='/GetMySentiment'><button className={style.goSentiment}>내 글 감정분석 하기</button></Link></div>
             </div>
         </div>
     );
