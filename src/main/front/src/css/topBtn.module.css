@@ -1,14 +1,13 @@
-.wrap {
-    position: fixed;
-    right: 10%;
-    bottom: 5%;
-    z-index: 1;
+.btnImg {
+    border-radius: 50px;
+    width: 35%;
 }
 
-.wrapM {
+/* Pc */
+.wrapP {
     position: fixed;
-    right: -10%;
-    bottom: 5%;
+    right: 10%;
+    bottom: 10%;
     z-index: 1;
 }
 
@@ -17,15 +16,39 @@
     border-radius: 50px;
     background: none;
     cursor: pointer;
-    -webkit-tap-highlight-color : transparent !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* 모바일 */
+.wrapM {
+    position: fixed;
+    right: -9%;
+    bottom: 7%;
+    z-index: 1;
+}
+
+.btnImgM {
+    width: 25%;
+
+}
+
+/* Tablet */
+.wrapT {
+    position: fixed;
+    right: -2%;
+    bottom: 10%;
+    z-index: 1;
+}
+
+.topBtn {
+    border: none;
+    border-radius: 50px;
+    background: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent !important;
 }
 
 .btnImg {
     border-radius: 50px;
     width: 35%;
-}
-
-.btnImgM {
-    width: 25%;
-    
 }

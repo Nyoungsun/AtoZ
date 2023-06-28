@@ -18,7 +18,7 @@ const MainTablet = (props) => {
                     {
                         isLoading ?
                             <div className={style.loadingDiv}>
-                                <img src='/img/loading' alt='loading' className={style.loading} />
+                                <img src='/img/loading.png' alt='loading' className={style.loading} />
                             </div> :
                             <img src='/img/logo.png' alt='logo' /> //public 폴더 안에 이미지 절대 경로로 가져올 때 사용법
                     }

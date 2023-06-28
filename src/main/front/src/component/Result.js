@@ -137,7 +137,10 @@ const Result = (props) => {
             {isTablet && items.map((items, index) => (<ItemsTablet items={items} key={index} />))}
 
             {
-                showButton && <TopBtn scrollToTop={scrollToTop} />
+                showButton && <TopBtn isTablet={isTablet}
+                    isMobile={isMobile}
+                    isPc={isPc}
+                    scrollToTop={scrollToTop} />
             }
             {
                 start < 1001 && start < total ?
