@@ -1,6 +1,6 @@
 
-import React, { useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2";
 import axios from 'axios';
 import GetMySentimentPc from './GetMySentimentPc';
@@ -28,6 +28,18 @@ const GetMySentiment = (props) => {
         var Regex = /[a-zA-Z]+/;
         return Regex.test(text);
     }
+
+    useEffect(() => {
+        if (checkEng(text)) {
+            Swal.fire({
+                icon: 'warning',
+                text: '한글만 입력해주세요.',
+                showCancelButton: false,
+                confirmButtonText: "확인",
+                confirmButtonColor: '#1564A8'
+            })
+        }
+    }, [text])
 
     const getSentiment = () => {
         if (text === '') {
@@ -58,8 +70,8 @@ const GetMySentiment = (props) => {
     return (
         <div style={{ 'textAlign': 'center', background: `#FAFBFC` }}>
             {isPc && <GetMySentimentPc getSentiment={getSentiment} onInput={onInput} inputCount={inputCount} />}
-            {isMobile && <GetMySentimentMobile getSentiment={getSentiment} onInput={onInput} inputCount={inputCount}/>}
-            {isTablet && <GetMySentimentTablet getSentiment={getSentiment} onInput={onInput} inputCount={inputCount}/>}
+            {isMobile && <GetMySentimentMobile getSentiment={getSentiment} onInput={onInput} inputCount={inputCount} />}
+            {isTablet && <GetMySentimentTablet getSentiment={getSentiment} onInput={onInput} inputCount={inputCount} />}
         </div>
     );
 };

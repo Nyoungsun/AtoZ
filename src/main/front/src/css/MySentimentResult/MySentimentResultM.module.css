@@ -1,0 +1,33 @@
+.body{
+    min-height: calc(100vh - 4rem);
+}
+
+.logo{
+    display:inline-block;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.logo img {
+    width: 95px;
+}
+
+.resultArea{
+    background: #ffffff;
+    font-size: 13pt;
+    border-bottom: 3px solid #eeeeee;
+    border-top: 3px solid #eeeeee;
+    width: 100%;
+    height: auto;
+    margin: 0px auto 40px auto;
+}
+
+.btnWrap{
+    text-align: center;
+    width: 100%;
+}
+
+.btnWrap img {
+    width: 70px;
+}

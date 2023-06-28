@@ -1,0 +1,34 @@
+.body{
+    min-height: calc(100vh - 4rem);
+}
+
+.logo{
+    display:inline-block;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    text-align: center;
+}
+
+.logo img {
+    width: 130px;
+}
+
+.resultArea{
+    background: #ffffff;
+    font-size: 14pt;
+    border: 1px solid #eeeeee;
+    box-shadow: 2px 2px 2px 2px #eeeeee;
+    border-radius: 25px;
+    width: 1000px;
+    height: auto;
+    margin: 0px auto 60px auto;
+}
+
+.btnWrap{
+    text-align: center;
+    width: 100%;
+}
+
+.btnWrap img {
+    width: 80px;
+}

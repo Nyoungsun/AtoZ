@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive'
 import Result from './component/Result';
 import Main from './component//Main/Main';
 import GetMySentiment from './component/GetMySentiment/GetMySentiment';
-import MySentimentResult from './component/MySentimentResult';
+import MySentimentResult from './component/MySentimentResult/MySentimentResult';
 import Footer from './component/Footer';
 import './css/App.module.css'
 
@@ -18,7 +18,6 @@ const App = () => {
   const isMobile = useMediaQuery({
     query: "(max-width:767px)"
   });
-
 
   useEffect(() => {
     window.onbeforeunload = function pushRefresh() {
