@@ -1,0 +1,31 @@
+.items {
+    border-bottom: 10px solid #FAFBFC;
+    padding: 20px 20px;
+    width: 90%;
+    margin: 0 auto;
+    background: #ffffff;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 12pt;
+}
+
+.title:hover {
+    cursor: pointer;
+}
+
+.description{
+    font-size: 11pt;
+}
+
+.sentiment {
+    height: 40px;
+    color: gray;
+    font-size: 10pt;
+    float: right;
+}
+
+.postdate {
+    font-size: 10pt;
+}

@@ -1,0 +1,81 @@
+.body{
+    min-height: calc(100vh - 4rem);
+}
+
+.logo{
+    display:inline-block;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.logo img {
+    width: 120px;
+}
+
+.textAreaWrap {
+    background-color: #ffffff;
+    box-shadow: 3px 3px 3px 3px #eeeeee;
+    width: 90%;
+    height: 250px;
+    border-radius: 20px;
+    margin: 0 auto;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.textArea{
+    border: none;
+    font-size: 13pt;
+    resize: none;
+    width: 100%;
+    height: 100%;
+}
+
+.textArea:focus {
+    outline: none;
+}
+
+.textArea::placeholder {
+    font-size: 12pt;
+    font-weight: 400;
+    color: #9e9e9e;
+}
+
+.textArea::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
+}
+
+.textArea::-webkit-scrollbar-thumb {
+    background: #1564A8; /* 스크롤바의 색상 */
+    border-radius: 10px;
+}
+
+.textArea::-webkit-scrollbar-track {
+    background: rgba(33, 121, 245, 0.1);  /*스크롤바 뒷 배경 색상*/
+}
+
+.btnWrap{
+    text-align: right;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.analyzeBtn{
+    border: none;
+    background: none;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.analyzeBtn img {
+    width: 80px;
+}
+
+.clovaLogo {
+    margin-top: 10px;
+    width: 150px;
+}
