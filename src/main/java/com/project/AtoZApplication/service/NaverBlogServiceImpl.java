@@ -128,7 +128,6 @@ public class NaverBlogServiceImpl implements NaverBlogService {
         }
         long endTime = System.currentTimeMillis(); // 전체 작업 종료 시간 측정
         long executionTime = endTime - startTime; // 전체 작업 실행 시간 계산
-        System.out.println("Total execution time: " + executionTime + " ms");
 
         return contentsList;
     }
