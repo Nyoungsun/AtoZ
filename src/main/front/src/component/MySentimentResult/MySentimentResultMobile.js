@@ -39,7 +39,7 @@ const MySentimentResultMobile = (props) => {
                     {
                         sentences.map((sentences, index) => (
                             <p key={index}><span>{sentences.content}</span><br />
-                                <b style={{fontSize:'13pt'}}>
+                                <b>
                                     [부정: {Math.round(sentences.confidence.negative * 10000) / 100}%]
                                     [중립: {Math.round(sentences.confidence.neutral * 10000) / 100}%]
                                     [긍정: {Math.round(sentences.confidence.positive * 10000) / 100}%]
