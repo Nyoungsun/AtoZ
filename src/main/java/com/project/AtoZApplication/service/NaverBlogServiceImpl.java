@@ -99,14 +99,14 @@ public class NaverBlogServiceImpl implements NaverBlogService {
 
                     String content = blogContent.text();
 
-                    content = content.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣0-9,. ]", "");
-                    content = content.replaceAll("\\s+", " ");
+                    content = content.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣0-9,. ]", ""); //특수문자, 영문자, 숫자 제거
+                    content = content.replaceAll("\\s+", " "); //띄어쓰기 여러개 제거
                     content = content.trim();
 
                     if (content.length() > 1000) {
                         content = content.substring(0, 1000);
                     }
-
+                    System.out.println(content);
                     return content;
 
                 } catch (IOException e) {
