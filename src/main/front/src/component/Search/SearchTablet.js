@@ -22,7 +22,7 @@ const SearchTablet = (props) => {
                         }
                     </Link>
                     <div className={style.inputDiv}>
-                        <input className={style.input} onKeyDown={pressEnter} value={query} onChange={onQuery} placeholder='검색어를 입력해보세요.' />
+                        <input className={style.input} onKeyDown={pressEnter} value={query} onChange={onQuery} placeholder='네이버 블로그 글을 검색해보세요.' />
                     </div>
                     <button className={style.btn} onClick={getNewItems}>
                         <img src='/img/search.png' alt='검색' />

@@ -24,7 +24,7 @@ const GetMySentiment = (props) => {
     }
 
     const checkEng = (text) => {
-        var Regex = /[a-zA-Z]+/;
+        var Regex = /[^\uAC00-\uD7AF\u1100-\u11FF\u3130-\u318F\uA960-\uA97F\uAC00-\uD7A3]+/;
         return Regex.test(text);
     }
 
