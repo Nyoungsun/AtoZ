@@ -71,7 +71,7 @@ public class NaverBlogServiceImpl implements NaverBlogService {
         JSONArray items = (JSONArray) responseBody.get("items");
         List<String> contentsList = new ArrayList<>();
 
-        ExecutorService executorService = Executors.newCachedThreadPool();
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
 
         List<Callable<String>> tasks = new ArrayList<>();
 
@@ -128,6 +128,7 @@ public class NaverBlogServiceImpl implements NaverBlogService {
         }
         long endTime = System.currentTimeMillis(); // 전체 작업 종료 시간 측정
         long executionTime = endTime - startTime; // 전체 작업 실행 시간 계산
+        System.out.println(executionTime);
 
         return contentsList;
     }
