@@ -12,7 +12,7 @@ const SearchTablet = (props) => {
 
     return (
         <div>
-            <div className={style.body}>
+            <div style={{position:'sticky', top: 0}}>
                 <div className={style.wrap}>
                     <Link to='/' onClick={() => (window.scrollTo({ top: 0 }))}>
                         {
