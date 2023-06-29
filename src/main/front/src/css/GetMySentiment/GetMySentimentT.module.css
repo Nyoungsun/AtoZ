@@ -4,13 +4,13 @@
 
 .logo{
     display:inline-block;
-    margin-top: 30px;
+    margin-top: 120px;
     margin-bottom: 30px;
     text-align: center;
 }
 
 .logo img {
-    width: 120px;
+    width: 130px;
 }
 
 .textAreaWrap {
@@ -61,7 +61,7 @@
 .btnWrap{
     text-align: right;
     margin: 0 auto;
-    width: 90%;
+    width: 95%;
 }
 
 .analyzeBtn{
@@ -72,5 +72,5 @@
 }
 
 .analyzeBtn img {
-    width: 80px;
+    width: 90px;
 }

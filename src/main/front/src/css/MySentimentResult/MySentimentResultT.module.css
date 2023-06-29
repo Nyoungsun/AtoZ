@@ -19,16 +19,18 @@
     border: 1px solid #eeeeee;
     box-shadow: 2px 2px 2px 2px #eeeeee;
     border-radius: 25px;
-    width: 90%;
+    padding: 20px 45px;
+    width: 85%;
     height: auto;
     margin: 0px auto 60px auto;
 }
 
 .btnWrap{
+    padding: 50px 0;
     text-align: center;
     width: 100%;
 }
 
 .btnWrap img {
-    width: 80px;
+    width: 90px;
 }

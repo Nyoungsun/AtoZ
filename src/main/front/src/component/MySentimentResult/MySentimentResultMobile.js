@@ -18,7 +18,7 @@ const MySentimentResultMobile = (props) => {
                         <img src='img/logo.png' alt='logo' />
                     </div>
                 </Link>
-                <h3 style={{ color: '#9e9e9e' }}> - 전체 글에 대한 감정 분석 결과 -</h3>
+                <h3 style={{ color: '#9e9e9e' }}> - 전체 글에 대한 감정분석 결과 -</h3>
                 <div className={style.resultArea}>
                     <p style={{ lineHeight: 2 }}>분석하신 글은 "{
                         sentences.map((sentences, index) => (
@@ -34,7 +34,7 @@ const MySentimentResultMobile = (props) => {
                         </b>
                     </p>
                 </div>
-                <h3 style={{ color: '#9e9e9e' }}> - 각 문장에 대한 감정 분석 결과 -</h3>
+                <h3 style={{ color: '#9e9e9e' }}> - 각 문장에 대한 감정분석 결과 -</h3>
                 <div className={style.resultArea}>
                     {
                         sentences.map((sentences, index) => (

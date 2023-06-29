@@ -28,7 +28,7 @@ const MainTablet = (props) => {
                         onChange={onQuery}
                         ref={inputFocus}
                         onKeyDown={pressEnter}
-                        placeholder="검색어를 입력해보세요." />
+                        placeholder="네이버 블로그 글을 검색해보세요." />
                     <button className={style.searchbtn} onClick={getItems}>
                         <img src='/img/search.png' alt='검색' />
                     </button>
