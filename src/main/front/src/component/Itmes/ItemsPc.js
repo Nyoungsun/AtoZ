@@ -5,8 +5,6 @@ const ItmesPc = (props) => {
 
     const items = props.items;
 
-    console.log(items)
-
     return (
         <div>
             <div onClick={() => { window.open(`${items.link}`) }} className={style.items}>

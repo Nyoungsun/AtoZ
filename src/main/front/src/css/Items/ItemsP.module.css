@@ -10,15 +10,20 @@
     cursor: pointer;
 }
 
-.title {
-    font-weight: bold;
-    font-size: 18px;
+.items:hover {
+    background: #eeeeee;
+    transition: background 0.3s ease;
 }
 
-.items:hover {
+.items:active {
     transform: translate(3px, 3px);
     box-shadow: none;
     transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .sentiment {

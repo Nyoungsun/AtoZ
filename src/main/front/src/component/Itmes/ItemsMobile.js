@@ -7,9 +7,9 @@ const ItmesPc = (props) => {
 
     return (
         <div>
-            <div onClick={() => { window.open(`${items.link}`) }} className={style.items}>
+            <div className={style.items}>
                 <p className={style.postdate}>{items.postdate}</p>
-                <p className={style.title} dangerouslySetInnerHTML={{ __html: items.title }} />
+                <p onClick={() => { window.open(`${items.link}`) }} className={style.title} dangerouslySetInnerHTML={{ __html: items.title }} />
                 <hr />
                 <p className={style.description} dangerouslySetInnerHTML={{ __html: items.description }} />
                 <span className={style.sentiment}>
