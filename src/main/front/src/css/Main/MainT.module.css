@@ -87,8 +87,9 @@
 }
 
 .goSentiment{
+    border-bottom: 1px solid black;
+    display: inline-block;
     background: none;
-    border: none;
     font-size: 12pt;
     color: #000000;
     font-weight: 600;
