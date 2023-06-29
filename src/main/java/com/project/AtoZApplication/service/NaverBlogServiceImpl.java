@@ -77,7 +77,6 @@ public class NaverBlogServiceImpl implements NaverBlogService {
 
         long startTime = System.currentTimeMillis(); // 작업 시작 시간 측정
 
-
         for (int i = 0; i < items.size(); i++) {
             JSONObject element = (JSONObject) items.get(i);
             String url = (String) element.get("link");
@@ -98,39 +97,35 @@ public class NaverBlogServiceImpl implements NaverBlogService {
                     }
 
                     String content = blogContent.text();
-
-                    content = content.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣0-9,. ]", ""); //특수문자, 영문자, 숫자 제거
-                    content = content.replaceAll("\\s+", " "); //띄어쓰기 여러개 제거
-                    content = content.trim();
+                    content = content.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣0-9,. ]", ""); //한글, 숫자, 마침표, 쉼표를 제외한 외국어, 특수문자 제거
+                    content = content.replaceAll(" ", ""); //모든 공백 제거
 
                     if (content.length() > 1000) {
-                        content = content.substring(0, 1000);
+                        String substring1 = content.substring(0, 300); // 앞에서부터 300자
+                        String substring2 = content.substring(content.length() / 2 - 200, content.length() / 2 + 200); // 가운데 400자
+                        String substring3 = content.substring(content.length() - 300); // 뒤에서부터 300자
+
+                        content = substring1 + substring2 + substring3; //1000자
                     }
-                    System.out.println(content);
                     return content;
 
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             };
-
             tasks.add(task);
         }
-
         try {
             List<Future<String>> futures = executorService.invokeAll(tasks);
-
             for (Future<String> future : futures) {
                 String content = future.get();
                 contentsList.add(content);
             }
-
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         } finally {
             executorService.shutdown();
         }
-
         long endTime = System.currentTimeMillis(); // 전체 작업 종료 시간 측정
         long executionTime = endTime - startTime; // 전체 작업 실행 시간 계산
         System.out.println("Total execution time: " + executionTime + " ms");
@@ -187,7 +182,6 @@ public class NaverBlogServiceImpl implements NaverBlogService {
     @Override
     public JSONArray clovaSentiment(List<String> contetnsList) {
         JSONArray jsonArray = new JSONArray();
-        JSONObject jsonObj = new JSONObject();
 
         String text;
         for (int i = 0; i < contetnsList.size(); i++) {
@@ -223,8 +217,10 @@ public class NaverBlogServiceImpl implements NaverBlogService {
 
                     Map<String, Object> confidence = (Map<String, Object>) document.get("confidence"); //document필드의 confidence필드 추출(neutral, positive, negative)
 
+                    JSONObject jsonObj = new JSONObject();
                     jsonObj.put("sentiment", sentiment);
                     jsonObj.put("confidence", confidence);
+
                     jsonArray.add(jsonObj);
 
                 } catch (Exception e) {
@@ -232,7 +228,6 @@ public class NaverBlogServiceImpl implements NaverBlogService {
                 }
             }//if
         }//for
-
         return jsonArray;
     }
 
