@@ -1,7 +1,7 @@
 import React from 'react';
 import style from '../../css/Items/ItemsT.module.css';
 
-const ItmesPc = (props) => {
+const ItmesTablet = (props) => {
 
     const items = props.items;
 
@@ -26,4 +26,4 @@ const ItmesPc = (props) => {
     );
 };
 
-export default ItmesPc;
+export default ItmesTablet;

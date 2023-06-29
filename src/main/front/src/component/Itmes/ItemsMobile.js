@@ -1,15 +1,15 @@
 import React from 'react';
 import style from '../../css/Items/ItemsM.module.css';
 
-const ItmesPc = (props) => {
+const ItmesMobile = (props) => {
 
     const items = props.items;
 
     return (
         <div>
-            <div className={style.items}>
+            <div onClick={() => { window.open(`${items.link}`) }} className={style.items}>
                 <p className={style.postdate}>{items.postdate}</p>
-                <p onClick={() => { window.open(`${items.link}`) }} className={style.title} dangerouslySetInnerHTML={{ __html: items.title }} />
+                <p className={style.title} dangerouslySetInnerHTML={{ __html: items.title }} />
                 <hr />
                 <p className={style.description} dangerouslySetInnerHTML={{ __html: items.description }} />
                 <span className={style.sentiment}>
@@ -28,4 +28,4 @@ const ItmesPc = (props) => {
     );
 };
 
-export default ItmesPc;
+export default ItmesMobile;
