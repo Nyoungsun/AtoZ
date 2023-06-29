@@ -10,15 +10,15 @@
 }
 
 .logo img {
-    width: 95px;
+    width: 90px;
 }
 
 .resultArea{
     background: #ffffff;
-    font-size: 13pt;
-    border-bottom: 3px solid #eeeeee;
-    border-top: 3px solid #eeeeee;
-    width: 100%;
+    font-size: 12pt;
+    border: 3px solid #eeeeee;
+    width: 85%;
+    padding: 15px 35px;
     height: auto;
     margin: 0px auto 40px auto;
 }
@@ -26,6 +26,7 @@
 .btnWrap{
     text-align: center;
     width: 100%;
+    padding-bottom: 40px;
 }
 
 .btnWrap img {

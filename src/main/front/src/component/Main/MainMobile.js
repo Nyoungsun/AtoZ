@@ -19,7 +19,7 @@ const MainMobile = (props) => {
                             <div className={style.loadingDiv}>
                                 <img src='/img/loading.png' alt='loading' className={style.loading} />
                             </div> :
-                            <img src='/img/logo.png' alt='logo' />
+                            <Link to ='/'><img src='/img/logo.png' alt='logo' /></Link>
                     }
                 </div>
                 <div className={style.inputDiv}>

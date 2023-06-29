@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import style from '../../css/MySentimentResult/MySentimentResultT.module.css'
 
-const MySentiment = (props) => {
+const MySentimentResultTablet = (props) => {
 
     const negative = props.negative;
     const neutral = props.neutral;
@@ -25,21 +25,25 @@ const MySentiment = (props) => {
                             <span key={index}>{sentences.content}</span>
                         ))}" 이고,
                         <br />
-                        [부정: {Math.round(negative * 100) / 100}%]
-                        [중립: {Math.round(neutral * 100) / 100}%]
-                        [긍정: {Math.round(positive * 100) / 100}%]의 분석 결과로 해당 글은<b> {
-                            sentiment === 'negative' ? '부정적' : sentiment === 'neutral' ? '중립적' : '긍정적'}</b>
-                        인 글이에요.
+                        <b>
+                            [부정: {Math.round(negative * 100) / 100}%]
+                            [중립: {Math.round(neutral * 100) / 100}%]
+                            [긍정: {Math.round(positive * 100) / 100}%]의 분석 결과로 해당 글은 {
+                                sentiment === 'negative' ? '부정적' : sentiment === 'neutral' ? '중립적' : '긍정적'}
+                            인 글이에요.
+                        </b>
                     </p>
                 </div>
                 <h2 style={{ color: '#9e9e9e' }}> - 각 문장에 대한 감정 분석 결과 -</h2>
                 <div className={style.resultArea}>
                     {
                         sentences.map((sentences, index) => (
-                            <p key={index}><span><b>{sentences.content}</b></span><br />
-                                [부정: {Math.round(sentences.confidence.negative * 10000) / 100}%]
-                                [중립: {Math.round(sentences.confidence.neutral * 10000) / 100}%]
-                                [긍정: {Math.round(sentences.confidence.positive * 10000) / 100}%]
+                            <p key={index}><span>{sentences.content}</span><br />
+                                <b style={{fontSize:'13pt'}}>
+                                    [부정: {Math.round(sentences.confidence.negative * 10000) / 100}%]
+                                    [중립: {Math.round(sentences.confidence.neutral * 10000) / 100}%]
+                                    [긍정: {Math.round(sentences.confidence.positive * 10000) / 100}%]
+                                </b>
                             </p>
                         ))
                     }
@@ -52,4 +56,4 @@ const MySentiment = (props) => {
     );
 };
 
-export default MySentiment;
+export default MySentimentResultTablet;
