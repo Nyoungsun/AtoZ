@@ -24,7 +24,7 @@ const GetMySentiment = (props) => {
     }
 
     const checkEng = (text) => {
-        var Regex = /[^\uAC00-\uD7AF\u1100-\u11FF\u3130-\u318F\uA960-\uA97F\uAC00-\uD7A3]+/;
+        var Regex = /[a-zA-Z\u4E00-\u9FFF\u3040-\u309F\u30A0-\u30FF\u0600-\u06FF]+/; //한글, 숫자, 특수문자를 제외한 다른 문자 입력 방지
         return Regex.test(text);
     }
 
