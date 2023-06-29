@@ -23,7 +23,7 @@ const MySentiment = (props) => {
                     <p style={{ lineHeight: 2 }}>분석하신 글은 "{
                         sentences.map((sentences, index) => (
                             <span key={index}>{sentences.content}</span>
-                        ))}" (이)에요.
+                        ))}" 이고,
                         <br />
                         [부정: {Math.round(negative * 100) / 100}%]
                         [중립: {Math.round(neutral * 100) / 100}%]
