@@ -14,7 +14,6 @@ public interface NaverBlogService {
     JSONObject searchNaverBlog(String query, int start);
     List<String> crawlingNaverBlog(JSONObject responseBody);
     JSONArray clovaSentiment(List<String> contentsList);
-
     ResponseEntity<String> mySentiment(String text);
 
 }

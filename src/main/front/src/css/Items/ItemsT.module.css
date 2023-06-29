@@ -14,12 +14,13 @@
     font-size: 18px;
 }
 
-.title:hover {
-    cursor: pointer;
+.items:hover {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
+
 
 .sentiment {
-    color: gray;
-    float: right;
+    color: #1564A8;
 }
-

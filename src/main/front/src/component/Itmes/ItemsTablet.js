@@ -1,29 +1,31 @@
 import React from 'react';
 import style from '../../css/Items/ItemsT.module.css';
 
-const ItemsTablet = (props) => {
+const ItmesPc = (props) => {
 
     const items = props.items;
 
+    console.log(items)
+
     return (
         <div>
-            <div className={style.items}>
+            <div onClick={() => { window.open(`${items.link}`) }} className={style.items}>
                 <p className={style.postdate}>{items.postdate}</p>
-                {
-                    items.sentiment === 'negative' ?
-                        <span className={style.sentiment}>부정적인 내용의 글입니다.</span> :
-                        items.sentiment === 'positive' ?
-                            <span className={style.sentiment}>긍정적인 내용의 글입니다.</span> :
-                            <span className={style.sentiment}>중립적인 내용의 글입니다.</span>
-                }
-                <div onClick={() => { window.open(`${items.link}`) }} className={style.title} dangerouslySetInnerHTML={{ __html: items.title }} />
-                <br />
+                <p className={style.title} dangerouslySetInnerHTML={{ __html: items.title }} />
                 <hr />
-                <br />
-                <div className={style.description} dangerouslySetInnerHTML={{ __html: items.description }} />
+                <p className={style.description} dangerouslySetInnerHTML={{ __html: items.description }} />
+                <p className={style.sentiment}>
+                    [부정: {Math.round(items.confidence.negative * 100) / 100}%]
+                    [중립: {Math.round(items.confidence.neutral * 100) / 100}%]
+                    [긍정: {Math.round(items.confidence.positive * 100) / 100}%]의 결과로 {
+                        items.sentiment === 'negative' ? <b>부정적인 내용의 글입니다.</b> :
+                            items.sentiment === 'positive' ?  <b>긍정적인 내용의 글입니다.</b> :
+                            <b>중립적인 내용의 글입니다.</b>
+                    }
+                </p>
             </div>
         </div>
     );
 };
 
-export default ItemsTablet;
+export default ItmesPc;

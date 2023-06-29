@@ -68,18 +68,22 @@ public class NaverBlogServiceImpl implements NaverBlogService {
     }
 
     public List<String> crawlingNaverBlog(JSONObject responseBody) {
-        JSONArray items = (JSONArray) responseBody.get("items"); //items 필드만 추출하여 JSONArray로 변환
+        JSONArray items = (JSONArray) responseBody.get("items");
+        List<String> contentsList = new ArrayList<>();
 
-        List<String> contentsList = new ArrayList<>(); //itmes의 link들을 저장할 배열 생성
+        ExecutorService executorService = Executors.newCachedThreadPool();
 
-        ExecutorService executorService = Executors.newFixedThreadPool(10); // 스레드를 이용한 병렬처리
-        List<Future<String>> futures = new ArrayList<>();
+        List<Callable<String>> tasks = new ArrayList<>();
+
+        long startTime = System.currentTimeMillis(); // 작업 시작 시간 측정
+
 
         for (int i = 0; i < items.size(); i++) {
-            JSONObject element = (JSONObject) items.get(i); //items(JSONArray) 하나씩 추출
-            String url = (String) element.get("link"); //그 안에서 link 필드만 추출
+            JSONObject element = (JSONObject) items.get(i);
+            String url = (String) element.get("link");
 
-            Future<String> future = executorService.submit(() -> {
+            Callable<String> task = () -> {
+
                 try {
                     Document document = Jsoup.connect(url).get();
                     Elements iframes = document.select("iframe#mainFrame");
@@ -108,25 +112,77 @@ public class NaverBlogServiceImpl implements NaverBlogService {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-            });
+            };
 
-            futures.add(future);
+            tasks.add(task);
         }
-
-        executorService.shutdown();
 
         try {
-            executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+            List<Future<String>> futures = executorService.invokeAll(tasks);
 
             for (Future<String> future : futures) {
-                String contents = future.get();
-                contentsList.add(contents);
+                String content = future.get();
+                contentsList.add(content);
             }
+
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
+        } finally {
+            executorService.shutdown();
         }
+
+        long endTime = System.currentTimeMillis(); // 전체 작업 종료 시간 측정
+        long executionTime = endTime - startTime; // 전체 작업 실행 시간 계산
+        System.out.println("Total execution time: " + executionTime + " ms");
+
         return contentsList;
     }
+
+//    public List<String> crawlingNaverBlog(JSONObject responseBody) {
+//        JSONArray items = (JSONArray) responseBody.get("items");
+//        List<String> contentsList = new ArrayList<>();
+//
+//        long startTime = System.currentTimeMillis(); // 작업 시작 시간 측정
+//
+//        for (int i = 0; i < items.size(); i++) {
+//            JSONObject element = (JSONObject) items.get(i);
+//            String url = (String) element.get("link");
+//
+//
+//            try {
+//                Document document = Jsoup.connect(url).get();
+//                Elements iframes = document.select("iframe#mainFrame");
+//                String src = iframes.attr("src");
+//                String realUrl = "http://blog.naver.com" + src;
+//
+//                Document realDocument = Jsoup.connect(realUrl).get();
+//                Elements blogContent = realDocument.select("div.se-component.se-text.se-l-default");
+//
+//                if (blogContent.isEmpty()) {
+//                    blogContent = realDocument.select("div.post-view");
+//                }
+//
+//                String content = blogContent.text();
+//
+//                content = content.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣0-9,. ]", "");
+//                content = content.replaceAll("\\s+", " ");
+//                content = content.trim();
+//
+//                if (content.length() > 1000) {
+//                    content = content.substring(0, 1000);
+//                }
+//                contentsList.add(content);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//
+//        long endTime = System.currentTimeMillis(); // 작업 종료 시간 측정
+//        long executionTime = endTime - startTime; // 작업 실행 시간 계산
+//        System.out.println("Task executed in " + executionTime + " ms");
+//
+//        return contentsList;
+//    }
 
     @Override
     public JSONArray clovaSentiment(List<String> contetnsList) {
