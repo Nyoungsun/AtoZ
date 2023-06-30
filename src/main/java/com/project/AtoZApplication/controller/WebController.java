@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class WebController implements ErrorController {
     @GetMapping({"/", "/error"})
     public String index() {
-
         return "index.html";
     }
 }
