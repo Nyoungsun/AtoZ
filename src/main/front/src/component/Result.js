@@ -109,7 +109,7 @@ const Result = (props) => {
     };
 
     return (
-        <div style={{ background: `#FAFBFC`, minHeight: `calc(100vh - 4rem)` }}>
+        <div style={{ background: `#FAFBFC`, minHeight: `calc(100vh - 4rem)`}}>
             {isPc &&
                 <SearchPc getNewItems={getNewItems}
                     pressEnter={pressEnter}

@@ -5,7 +5,7 @@
     margin: 0 auto;
     margin-bottom: 50px;
     padding: 50px 50px;
-    width: 600px;
+    width: 680px;
     background: #ffffff;
 }
 
@@ -14,18 +14,13 @@
     transition: background 0.3s ease;
 }
 
-.items:active {
-    transform: translate(3px, 3px);
-    box-shadow: none;
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
-}
-
 .title {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16pt;
 }
-
 
 .sentiment {
     color: #1564A8;
+    font-size: 16pt;
 }
+

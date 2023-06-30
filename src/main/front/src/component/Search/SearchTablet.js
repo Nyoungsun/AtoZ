@@ -11,8 +11,8 @@ const SearchTablet = (props) => {
     const isloading = props.isloading;
 
     return (
-        <div>
-            <div style={{position:'sticky', top: 0}}>
+        <div style={{position:'sticky', top: 0}}>
+            <div className={style.body}>
                 <div className={style.wrap}>
                     <Link to='/' onClick={() => (window.scrollTo({ top: 0 }))}>
                         {
