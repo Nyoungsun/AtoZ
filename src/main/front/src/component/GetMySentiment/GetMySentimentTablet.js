@@ -18,7 +18,7 @@ const GetMySentimentTablet = (props) => {
                     </div>
                 </Link>
                 <div>
-                    <h3 style={{ lineHeight: 1.5 }}>
+                    <h3 className={style.title}>
                         한글로 작성된 글 속 감정을 분석해보세요. <br />
                         감정을 긍정, 부정, 중립으로 분석하고 감정을 판단하는데 핵심이 된 주요 표현 부분을 추출하여 알려드릴게요. <br /><br /><br />
                     </h3>

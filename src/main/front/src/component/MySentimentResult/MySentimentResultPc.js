@@ -20,10 +20,10 @@ const MySentimentResultPc = (props) => {
                 </Link>
                 <h2 style={{ color: '#9e9e9e' }}> - 전체 글에 대한 감정분석 결과 -</h2>
                 <div className={style.resultArea}>
-                    <p style={{ lineHeight: 2 }}>분석하신 글은 "{
+                    <p style={{ lineHeight: 1.5 }}>{
                         sentences.map((sentences, index) => (
-                            <span key={index}>{sentences.content}</span>
-                        ))}" 이고,
+                            <p key={index}>{sentences.content}</p>
+                        ))}
                         <br />
                         <b>
                             [부정: {Math.round(negative * 100) / 100}%]
