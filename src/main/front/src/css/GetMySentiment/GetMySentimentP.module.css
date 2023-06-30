@@ -48,6 +48,7 @@
 
 .textArea::-webkit-scrollbar {
     width: 8px;  /* 스크롤바의 너비 */
+    cursor: pointer;
 }
 
 .textArea::-webkit-scrollbar-thumb {
