@@ -44,6 +44,19 @@
 <li>MobaXterm</li>
 </ul>
 
+<h4>💻API</h4>
+<ul>
+<li>Clova Sentiment</li>
+<li>Naver Search API</li>
+<li>SweetAlert2</li>
+</ul>
+
 <h2>📄소개</h2>
-<h4>메인페이지</h4>
+<h4>로고 및 컬러</h4>
+<img src='https://github.com/Nyoungsun/GANADA/assets/121652746/5f8e3b57-9273-44e4-92da-93e73247c98e'>
+
+<h4>메인 페이지</h4>
 <img src='https://github.com/Nyoungsun/GANADA/assets/121652746/b47684b1-1045-47f4-99f4-dd3972a8cacf'>
+
+<h4>검색 페이지</h4>
+<img src='https://github.com/Nyoungsun/GANADA/assets/121652746/a317efb0-443f-40da-94ba-b8cb985b6a4f'>
