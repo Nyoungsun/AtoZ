@@ -58,29 +58,32 @@
 <img src='https://github.com/Nyoungsun/GANADA/assets/121652746/5f8e3b57-9273-44e4-92da-93e73247c98e'>
 
 <h2>🗺️사이트멥</h2>
+<img src='https://github.com/Nyoungsun/GANADA/assets/121652746/b9b7b64f-c7e5-4b12-b426-26cec877d82c'>
 
 <h2>📄페이지</h2>
 <h4>메인 페이지 → 검색결과 페이지 → 네이버 블로그 페이지(외부)</h4>
 <img src='https://github.com/Nyoungsun/GANADA/assets/121652746/0d68ac03-874b-4c9d-b486-671e28ec33d7'>
-
 <h4>검색결과 페이지에서 메인 페이지로 이동하지 않고 상단의 검색창을 이용하여 재검색</h4>
 <img src='https://github.com/Nyoungsun/GANADA/assets/121652746/b2b41a8b-8126-4e5d-9acc-aba908709299'>
-
 <h4>메인 페이지 → 내 글 감성분석하기(짧은글) → 내 글 감성분석 결과 페이지</h4>
 <img src='https://github.com/Nyoungsun/GANADA/assets/121652746/9776a68b-b9cd-4082-94e3-d7f32b8d88d7'>
-
 <h4>내 글 감성분석하기 (긴글) → 내 글 감성분석 결과 페이지</h4>
 <img src='https://github.com/Nyoungsun/GANADA/assets/121652746/d44f24b4-cd90-4142-9830-738fc7133d4d'>
 
 <h2>📄반응형 페이지</h2>
 <h4>메인 페이지</h4>
 <img src='https://github.com/Nyoungsun/GANADA/assets/121652746/7be832b1-b630-4fd1-ab19-051e71777151'>
-
 <h4>검색결과 페이지</h4>
 <img src='https://github.com/Nyoungsun/GANADA/assets/121652746/62db32e9-ceb1-4d95-b2f7-9f700a9aa87c'>
-
 <h4>내 글 감성분석하기 페이지</h4>
 <img src='https://github.com/Nyoungsun/GANADA/assets/121652746/175fcfbe-0915-4d09-bbad-7dd8537fe059'>
-
 <h4>내 글 감성분석 결과 페이지</h4>
 <img src='https://github.com/Nyoungsun/GANADA/assets/121652746/827b0f5b-2fda-4e08-adaf-1a6a1b83fb31'>
+
+<h2>⚙️기능 구조</h2>
+<h4>검색 기능 구조</h4>
+<img src='https://github.com/Nyoungsun/GANADA/assets/121652746/4341dc14-eb31-4d37-bb62-d9dd990bd77e'>
+<h4>내 글 분석하기 기능 구조</h4>
+<img src='https://github.com/Nyoungsun/GANADA/assets/121652746/cff9d5b4-81a9-4213-8356-6763f23fc064'>
+<h4>CI/CD 구조</h4>
+<img src='https://github.com/Nyoungsun/GANADA/assets/121652746/0eaf6619-e6c6-48f0-a0f3-b84f38a92147'>
