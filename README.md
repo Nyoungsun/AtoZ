@@ -57,7 +57,7 @@
 <h2>🎨로고 및 메인 컬러</h2>
 <img src='https://github.com/Nyoungsun/GANADA/assets/121652746/5f8e3b57-9273-44e4-92da-93e73247c98e'>
 
-<h2>🗺️사이트멥</h2>
+<h2>🗺️사이트맵</h2>
 <img src='https://github.com/Nyoungsun/GANADA/assets/121652746/b9b7b64f-c7e5-4b12-b426-26cec877d82c'>
 
 <h2>📄페이지</h2>
