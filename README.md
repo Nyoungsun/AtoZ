@@ -15,7 +15,6 @@
 2023.06.03 ~ 2023.07.02
 
 <h2>🛠Skill</h2>
-<strong>기획, 설계, 디자인, FE/BE 개발, Cloud, CI/CD 모두 1인 개발로 진행되었습니다.</strong>
 
 <h4>💻FrontEnd</h4>
 <ul>
